@@ -7,23 +7,20 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 
 import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import HsaDashboardIcon from './src/Svgs/HsaDashboardIcon';
+  HsaDashboardIcon,
+  PhotoRecangle,
+  Logo,
+  NotificationIcon,
+  HsaCard,
+  AddIcon,
+  EditIcon,
+  DeleteIcon,
+  CameraIcon,
+  RepliesIcon,
+} from './src/Svgs';
 
 const App: () => React$Node = () => {
   return (
@@ -31,6 +28,15 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.saveArea}>
         <HsaDashboardIcon />
+        <PhotoRecangle />
+        <Logo />
+        <NotificationIcon />
+
+        <AddIcon />
+        <EditIcon />
+        <DeleteIcon />
+        <CameraIcon />
+        <RepliesIcon />
       </SafeAreaView>
     </>
   );
@@ -39,7 +45,7 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   saveArea: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#fff',
   },
 });
 

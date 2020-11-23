@@ -40,4 +40,4 @@ function HsaDashboardIcon(props) {
   );
 }
 
-export default HsaDashboardIcon;
+export {HsaDashboardIcon};
