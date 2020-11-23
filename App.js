@@ -14,7 +14,6 @@ import {
   PhotoRecangle,
   Logo,
   NotificationIcon,
-  HsaCard,
   AddIcon,
   EditIcon,
   DeleteIcon,
