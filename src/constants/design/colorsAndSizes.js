@@ -7,6 +7,9 @@ export const {height: SCREEN_HEIGHT, width: SCREEN_WIDTH} = Dimensions.get(
 export const INPUTS_AND_BUTTONS_HEIGHT = 65;
 export const WELCOME_ITEM_HEIGHT = 155.58;
 export const SEGMENT_HEIGHT = 59;
+export const MONTHLY_CALENDAR_CONTAINER = 59;
+export const STEP_NUMBER_HEIGHT = 56;
+export const REPORT_HEADER_HEIGHT = 40;
 //// fonts
 export const FONT_13 = 13;
 export const FONT_16 = 16;

@@ -15,21 +15,10 @@ import {
   I18nManager,
 } from 'react-native';
 import {ThemeProvider} from 'react-native-paper';
-import {Header, LoginInput, Segment} from './src/Components';
-import CustomButton from './src/Components/CustomButton';
+import {ReportHeader, StepNumber} from './src/Components';
 import RNBootSplash from 'react-native-bootsplash';
-import WelcomeScreenItem from './src/Components/WelcomeScreenItem';
-import {
-  AwarnessIcon,
-  CorrectIcon,
-  EvacuationIcon,
-  IncidentIcon,
-  MaintenanceIcon,
-  MonthlyCalendar,
-  RisksIcon,
-  TrainingIcon,
-} from './src/Svgs';
-import HsaCard from './src/Components/HsaCard';
+import CommentInput from './src/Components/CommentInput';
+
 const App: () => React$Node = () => {
   useEffect(() => {
     I18nManager.forceRTL(false);
@@ -44,11 +33,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#fff'} />
       <SafeAreaView style={styles.saveArea}>
-        <ThemeProvider>
-          <HsaCard ItemIcon={<MonthlyCalendar />} />
-          <Segment values={['one', 'two']} selectedIndex={0} />
-          <Header />
-        </ThemeProvider>
+        <CommentInput />
       </SafeAreaView>
     </>
   );
@@ -57,10 +42,6 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   saveArea: {
     flex: 1,
-    width: '97%',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    alignSelf: 'center',
   },
 });
 

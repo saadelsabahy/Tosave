@@ -42,6 +42,7 @@ export default HsaCard;
 const styles = StyleSheet.create({
   card: {
     width: SCREEN_WIDTH / 2 - 10,
+    margin: 5,
     height: 200,
     borderRadius: 18,
     backgroundColor: WHITE_COLOR,

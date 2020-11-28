@@ -16,3 +16,4 @@ export * from './TrainingIcon';
 export * from './IncidentIcon';
 export * from './Evacuation';
 export * from './RisksIcon';
+export * from './CommentImageIcon';
