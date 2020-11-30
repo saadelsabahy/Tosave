@@ -12,3 +12,6 @@ const MONTHES = [
   {ar: 'نوفمبر', en: 'jan'},
   {ar: 'ديسمبر', en: 'jan'},
 ];
+
+export const IMAGE_LENGTH = 9;
+export const IMAGE_GRID_COLUMNS = 3;

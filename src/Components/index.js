@@ -11,3 +11,5 @@ export * from './CreateMonthlyReportIcon';
 export * from './StepNumber';
 export * from './ReportHeader';
 export * from './CommentInput';
+export * from './ImageGrid';
+export * from './BottomSheet';

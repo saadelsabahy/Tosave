@@ -1,25 +1,30 @@
 import * as React from 'react';
-import Svg, {Defs, G, Rect} from 'react-native-svg';
-/* SVGR has dropped some elements not supported by react-native-svg: filter */
+import Svg, {G, Path} from 'react-native-svg';
 
 function DeleteIcon(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width={77}
-      height={77}
-      viewBox="0 0 77 77"
+      width={18.242}
+      height={23.921}
+      viewBox="0 0 18.242 23.921"
       {...props}>
-      <Defs></Defs>
-      <G filter="url(#prefix__a)">
-        <Rect
-          data-name="Rectangle 2406"
-          width={44}
-          height={44}
-          rx={13}
-          transform="translate(16.5 16.5)"
-          fill="#f3184d"
-          opacity={0.1}
+      <G fill="#f3184d" stroke="#f3184d" strokeWidth={0.5}>
+        <Path
+          data-name="Path 52953"
+          d="M16.774 4.813H1.468a.912.912 0 00-.909 1l1.556 16.73v.014a1.259 1.259 0 001.246 1.118h11.454a1.259 1.259 0 001.246-1.118v-.01l1.622-16.734a.914.914 0 00-.908-1zm-1.519 17.652a.448.448 0 01-.44.4H3.362a.448.448 0 01-.44-.395L1.367 5.742a.1.1 0 01.026-.079.1.1 0 01.075-.035h15.306a.1.1 0 01.075.033.106.106 0 01.026.081z"
+        />
+        <Path
+          data-name="Path 52954"
+          d="M6.84 9.037a.406.406 0 00-.406.406v10.32a.406.406 0 00.811 0V9.443a.406.406 0 00-.405-.406z"
+        />
+        <Path
+          data-name="Path 52955"
+          d="M11.403 8.917a.406.406 0 00-.406.406v10.32a.406.406 0 10.811 0V9.323a.406.406 0 00-.405-.406z"
+        />
+        <Path
+          data-name="Path 52956"
+          d="M.656 3.55h16.93a.4.4 0 00.406-.4h0a.413.413 0 00-.406-.414h-5.677V.667a.4.4 0 00-.383-.417h-4.81a.4.4 0 00-.383.417v2.067H.656a.406.406 0 100 .811zm6.488-2.484h3.954v1.673H7.144z"
         />
       </G>
     </Svg>
