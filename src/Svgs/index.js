@@ -20,3 +20,7 @@ export * from './RisksIcon';
 export * from './CommentImageIcon';
 export * from './MonthlyCalenderIcon';
 export * from './ChangePasswordLock';
+export * from './DropdownArrow';
+export * from './DatePickerArrowRight';
+export * from './Unchecked';
+export * from './Checked';

@@ -18,8 +18,22 @@ const WelcomeScreenItem = ({
   title,
   description,
 }) => {
+  const backGroundLine = (height) => {
+    return <View style={[styles.backGroundLine, {height}]} key={height} />;
+  };
   return (
     <Pressable style={styles.container} onPress={onItemPressed}>
+      <View style={[styles.backGroundLineContainer]}>
+        <View style={{flexDirection: 'row'}}>
+          {[50, 33, 40, 17].map((item, index) => backGroundLine(item))}
+        </View>
+        {React.cloneElement(SvgIcon, {
+          width: 300,
+          height: 120,
+          style: {opacity: 0.8},
+        })}
+      </View>
+
       <Card.Content style={styles.innerContent}>
         <CustomText
           text={title}
@@ -47,6 +61,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     alignSelf: 'center',
+  },
+  backGroundLineContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    opacity: 0.1,
+    alignSelf: 'center',
+    top: 0,
+  },
+  backGroundLine: {
+    width: 6,
+    height: 50,
+    backgroundColor: '#ffffff',
+    marginEnd: 2,
+    borderRadius: 5,
   },
   innerContent: {
     // width: '50%',

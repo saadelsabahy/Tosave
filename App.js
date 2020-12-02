@@ -20,13 +20,24 @@ import {
   StepNumber,
   ImageGrid,
   CustomBottomSheet,
+  CustomDropdown,
+  CalendarPickerRange,
+  CustomCheckBox,
 } from './src/Components';
 import RNBootSplash from 'react-native-bootsplash';
 import CommentInput from './src/Components/CommentInput';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import {ChangePasswordLock} from './src/Svgs';
+import {
+  ChangePasswordLock,
+  CheckedSvg,
+  HsaDashboardIcon,
+  UnChecked,
+  UnCheckedSvg,
+} from './src/Svgs';
+import WelcomeScreenItem from './src/Components/WelcomeScreenItem';
+import HsaCard from './src/Components/HseCard';
 const App: () => React$Node = () => {
-  const botRef = React.useRef(null);
+  const [check, setcheck] = React.useState(false);
   useEffect(() => {
     I18nManager.forceRTL(false);
     const splash = setTimeout(() => {
@@ -49,8 +60,14 @@ const App: () => React$Node = () => {
             
           ]}
         /> */}
-          <CustomBottomSheet ref={botRef.current} />
-          <ChangePasswordLock />
+          <CalendarPickerRange />
+          <CustomCheckBox
+            onChange={(newValue) => {
+              setcheck(!check);
+              console.log({newValue});
+            }}
+            checked={check}
+          />
         </SafeAreaView>
       </BottomSheetModalProvider>
     </>
