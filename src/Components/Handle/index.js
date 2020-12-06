@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     width: 68,
     height: 6,
     borderRadius: 3,
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: '#000',
     shadowColor: 'rgba(0, 0, 0, 0.16)',
     shadowOffset: {
       width: 0,
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     shadowRadius: 11,
     shadowOpacity: 1,
     alignSelf: 'center',
-    marginBottom: 5,
+    marginBottom: 0,
   },
 });

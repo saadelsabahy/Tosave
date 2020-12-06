@@ -1,0 +1,17 @@
+{
+   "login": "log in",
+   "username":"username",
+   "password":"password",
+  "change":"change",
+  "changelanguage":"change language",
+  "language":"english",
+   "navigation": {
+     "drawer": {
+   
+     },
+     "stack": {
+       
+     }
+   }
+ 
+ }

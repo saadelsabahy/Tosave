@@ -1,0 +1,17 @@
+{
+   "login": "تسجيل الدخول",
+   "username":"اسم المستخدم",
+   "password":"كلمه المرور",
+  "change":"تغيير",
+  "changelanguage":"تغيير اللغه",
+  "language":"العربيه",
+   "navigation": {
+     "drawer": {
+   
+     },
+     "stack": {
+       
+     }
+   }
+ 
+ }

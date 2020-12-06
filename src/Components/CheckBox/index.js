@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {SCREEN_HEIGHT} from '../../constants/design/colorsAndSizes';
+import {calcFont, SCREEN_HEIGHT} from '../../constants/design/colorsAndSizes';
 import {CheckedSvg, UnCheckedSvg} from '../../Svgs';
 import {CustomText} from '../customText';
 const CustomCheckBox = ({checked, disabeled, onChange, label, labelStyle}) => {
@@ -22,9 +22,9 @@ export {CustomCheckBox};
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    marginEnd: calcFont(10),
   },
   text: {
     marginStart: 10,

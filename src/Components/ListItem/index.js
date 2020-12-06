@@ -16,12 +16,14 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 
-const HsaCard = ({onItemPressed, ItemIcon, itemName}) => {
+const ListItem = ({onItemPressed, ItemIcon, itemName}) => {
   return (
     <Pressable style={[styles.card]} onPress={onItemPressed}>
-      <View style={styles.imageBackground}>
-        {React.cloneElement(ItemIcon, {width: '100%', height: '100%'})}
-      </View>
+      {ItemIcon && (
+        <View style={styles.imageBackground}>
+          {React.cloneElement(ItemIcon, {width: '100%', height: '100%'})}
+        </View>
+      )}
       <View style={styles.cardDetailesContainer}>
         {ItemIcon}
         <CustomText textStyle={[styles.title]} text={itemName} />
@@ -37,7 +39,7 @@ const HsaCard = ({onItemPressed, ItemIcon, itemName}) => {
   );
 };
 
-export default HsaCard;
+export {ListItem};
 
 const styles = StyleSheet.create({
   card: {

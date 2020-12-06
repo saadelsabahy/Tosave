@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {TextInput, DarkTheme} from 'react-native-paper';
+import {TextInput, DarkTheme, HelperText} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   LOGIN_INPUT_BG,
@@ -10,7 +10,15 @@ import {
   TEXT_BLACK,
   FONT_18,
 } from '../../constants/design/colorsAndSizes';
-const LoginInput = ({label, inputContainerStyle, inputStyle, ...props}) => {
+import {CustomText} from '../customText';
+const LoginInput = ({
+  label,
+  inputContainerStyle,
+  inputStyle,
+  referance,
+  errorText,
+  ...props
+}) => {
   const theme = {
     ...DarkTheme,
     roundness: 5,
@@ -24,19 +32,23 @@ const LoginInput = ({label, inputContainerStyle, inputStyle, ...props}) => {
     },
   };
   return (
-    <View style={[styles.inputContainer, inputContainerStyle]}>
-      <TextInput
-        label={label}
-        style={[styles.input, inputStyle]}
-        theme={theme}
-        underlineColor="transparent"
-        /*  right={
-          <TextInput.Icon
-            name={() => <Ionicons name={'eye-outline'} size={20} />}
-          />
-        } */
-        {...props}
-      />
+    <View>
+      <View style={[styles.inputContainer, inputContainerStyle]}>
+        <TextInput
+          label={`${label.substring(0, 1).toUpperCase()}${label.substring(1)}`}
+          style={[styles.input, inputStyle]}
+          theme={theme}
+          underlineColor="transparent"
+          enablesReturnKeyAutomatically
+          ref={referance}
+          {...props}
+        />
+      </View>
+      {errorText && (
+        <View style={{width: '95%', alignSelf: 'center'}}>
+          <CustomText text={errorText} textStyle={{color: 'red'}} />
+        </View>
+      )}
     </View>
   );
 };
@@ -53,7 +65,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 0,
     backgroundColor: LOGIN_INPUT_BG,
-    height: INPUTS_AND_BUTTONS_HEIGHT + 10,
+    height: INPUTS_AND_BUTTONS_HEIGHT + 4,
     overflow: 'hidden',
     fontSize: FONT_18,
     fontFamily: 'Montserrat',

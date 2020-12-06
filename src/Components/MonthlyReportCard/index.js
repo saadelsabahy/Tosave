@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Animated, View} from 'react-native';
 import {Badge, Card} from 'react-native-paper';
 import {
   GREEN50,
@@ -9,9 +9,10 @@ import {
   FONT_16,
   BADGE_COLOR,
 } from '../../constants/design/colorsAndSizes';
-import {CorrectIcon} from '../../Svgs';
+import {CorrectIcon, DeleteIcon, DeleteIconWithBg, EditIcon} from '../../Svgs';
 import {CustomText} from '../customText';
-
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+// import Animated from 'react-native-reanimated';
 const MonthlyReportCard = ({
   badgeNumber,
   done,
@@ -19,30 +20,63 @@ const MonthlyReportCard = ({
   description,
   date,
   onPress,
+  onEditPressed,
+  onDeletePressed,
 }) => {
+  const renderEndAction = ({progress, dragx}) => {
+    const opacity = dragx.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0, 1],
+      extrapolate: 'clamp',
+    });
+    return (
+      <Animated.View style={[styles.endActionContainer /* {opacity} */]}>
+        <Pressable
+          style={({pressed}) => [{opacity: pressed ? 0.7 : 1}]}
+          onPress={onEditPressed}>
+          <EditIcon />
+        </Pressable>
+        <Pressable
+          style={({pressed}) => [{opacity: pressed ? 0.7 : 1}]}
+          onPress={onDeletePressed}>
+          <DeleteIconWithBg />
+        </Pressable>
+      </Animated.View>
+    );
+  };
   return (
-    <Pressable style={styles.container} onPress={onPress}>
-      <View style={styles.startContainer}>
-        <CustomText text={title} textStyle={[styles.cardTitle]} />
-        <CustomText text={description} textStyle={[styles.reportName]} />
-        <CustomText text={date} textStyle={[styles.dateText]} />
-      </View>
+    <Swipeable
+      renderRightActions={(progress, dragx) =>
+        renderEndAction({
+          /* onEditPressed: () => alert('edit'),
+          onDeletePressed: () => alert('delete'), */
+          progress,
+          dragx,
+        })
+      }>
+      <Pressable style={styles.container} onPress={onPress}>
+        <View style={styles.startContainer}>
+          <CustomText text={title} textStyle={[styles.cardTitle]} />
+          <CustomText text={description} textStyle={[styles.reportName]} />
+          <CustomText text={date} textStyle={[styles.dateText]} />
+        </View>
 
-      <View style={styles.endContainer}>
-        {badgeNumber && (
-          <View style={styles.badgeContainer}>
-            <Badge size={30} style={styles.badge}>
-              {badgeNumber}
-            </Badge>
-          </View>
-        )}
-        {done && (
-          <View style={styles.doneIconeContainer}>
-            <CorrectIcon />
-          </View>
-        )}
-      </View>
-    </Pressable>
+        <View style={styles.endContainer}>
+          {badgeNumber && (
+            <View style={styles.badgeContainer}>
+              <Badge size={30} style={styles.badge}>
+                {badgeNumber}
+              </Badge>
+            </View>
+          )}
+          {done && (
+            <View style={styles.doneIconeContainer}>
+              <CorrectIcon />
+            </View>
+          )}
+        </View>
+      </Pressable>
+    </Swipeable>
   );
 };
 
@@ -127,5 +161,12 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     letterSpacing: 0,
     color: '#7c7c7c',
+  },
+  endActionContainer: {
+    flex: 0.35,
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
 });

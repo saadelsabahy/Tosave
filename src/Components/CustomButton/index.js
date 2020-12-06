@@ -5,6 +5,7 @@ import {
   GREEN100,
   FONT_22,
   INPUTS_AND_BUTTONS_HEIGHT,
+  calcFont,
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 const CustomButton = ({
@@ -20,7 +21,7 @@ const CustomButton = ({
       <Button
         mode="contained"
         contentStyle={[styles.button, buttonStyle]}
-        color={buttonColor || GREEN100 || GREEN100}
+        color={buttonColor || GREEN100}
         {...props}>
         <CustomText
           text={buttonText}
@@ -31,10 +32,16 @@ const CustomButton = ({
   );
 };
 
-export default CustomButton;
+export {CustomButton};
 
 const styles = StyleSheet.create({
-  container: {width: '100%', height: INPUTS_AND_BUTTONS_HEIGHT},
+  container: {
+    width: '100%',
+    height: INPUTS_AND_BUTTONS_HEIGHT,
+    backgroundColor: 'red',
+    overflow: 'hidden',
+    borderRadius: calcFont(20),
+  },
   button: {
     width: '100%',
     height: '100%',

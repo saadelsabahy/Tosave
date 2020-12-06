@@ -1,6 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SCREEN_WIDTH, WHITE_COLOR} from '../../constants/design/colorsAndSizes';
+import {
+  calcFont,
+  SCREEN_WIDTH,
+  WHITE_COLOR,
+} from '../../constants/design/colorsAndSizes';
 
 const BottomSheetContainer = ({
   children,
@@ -20,7 +24,7 @@ export {BottomSheetContainer};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
     width: SCREEN_WIDTH,
     backgroundColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',
@@ -30,10 +34,9 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 11,
     shadowOpacity: 1,
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: calcFont(40),
   },
   contentContainer: {height: '90%', width: '90%'},
 });

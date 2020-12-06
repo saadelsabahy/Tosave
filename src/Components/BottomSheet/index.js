@@ -1,57 +1,68 @@
 import React, {useMemo, useRef, useCallback} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
-import BottomSheet, {
-  useBottomSheetModal,
-  BottomSheetOverlay,
-} from '@gorhom/bottom-sheet';
-import {CustomText} from '../customText';
 import {
   SCREEN_WIDTH,
   SCREEN_HEIGHT,
   WHITE_COLOR,
+  GREEN50,
+  calcFont,
+  calcWidth,
+  calcHeight,
 } from '../../constants/design/colorsAndSizes';
+import {Modalize} from 'react-native-modalize';
 import {BottomSheetContainer} from '../BottomSheetBlock';
-import {Handle} from '../Handle';
-const CustomBottomSheet = ({children, snapPoints, bottomSheetRef}) => {
-  const {present, dismiss} = useBottomSheetModal();
-  const SNAP_POINTS = useMemo(() => snapPoints || [SCREEN_HEIGHT / 2.5], []);
-
-  const handleChange = useCallback((index) => {
-    if (index === 0) {
-      console.log('Modal Been Dismissed');
-    }
-  }, []);
-  const handlePresentPress = useCallback(() => {
-    present(
-      <BottomSheetContainer>
-        <CustomText text="hello" />
-      </BottomSheetContainer>,
-      {
-        snapPoints: SNAP_POINTS,
-        animationDuration: 500,
-        overlayComponent: BottomSheetOverlay,
-        overlayOpacity: 0.3,
-        dismissOnOverlayPress: true,
-        handleComponent: () => {
-          return <Handle />;
-        },
-        onChange: handleChange,
-      },
-    );
-  }, [present, handleChange]);
-
+import {LanguageSheet} from '../LanguageBottomSheet';
+const CustomBottomSheet = ({children, snapPoints, referance}) => {
   return (
-    <View style={styles.container}>
-      <Button title={'open'} onPress={handlePresentPress} />
-    </View>
+    <Modalize
+      ref={referance}
+      handlePosition="outside"
+      useNativeDriver={true}
+      modalStyle={[styles.modal]}
+      disableScrollIfPossible={false}
+      handleStyle={[styles.handle]}
+      modalHeight={snapPoints || SCREEN_HEIGHT / 1.9}
+      threshold={20}
+      overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
+      {children}
+    </Modalize>
   );
 };
 
 export {CustomBottomSheet};
 
 const styles = StyleSheet.create({
-  container: {
+  modal: {
     flex: 1,
-    padding: 24,
+    width: SCREEN_WIDTH,
+    backgroundColor: WHITE_COLOR,
+    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 11,
+    shadowOpacity: 1,
+    borderTopStartRadius: calcFont(40),
+    borderTopEndRadius: calcFont(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#ddd',
+    // overflow: 'hidden',
+  },
+  handle: {
+    width: calcWidth(68),
+    height: calcHeight(6),
+    borderRadius: calcFont(3),
+    backgroundColor: WHITE_COLOR,
+    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 11,
+    shadowOpacity: 1,
+    alignSelf: 'center',
+    marginBottom: 0,
   },
 });
