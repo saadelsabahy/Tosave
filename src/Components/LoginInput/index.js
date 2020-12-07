@@ -36,9 +36,11 @@ const LoginInput = ({
     <View style={[containerStyle]}>
       <View style={[styles.inputContainer, inputContainerStyle]}>
         <TextInput
-          label={`${label?.substring(0, 1).toUpperCase()}${label?.substring(
-            1,
-          )}`}
+          label={
+            label
+              ? `${label.substring(0, 1).toUpperCase()}${label.substring(1)}`
+              : ''
+          }
           style={[styles.input, inputStyle]}
           theme={theme}
           underlineColor="transparent"
