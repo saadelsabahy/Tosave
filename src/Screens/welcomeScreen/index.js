@@ -21,7 +21,11 @@ const WelcomeScreen = ({navigation}) => {
       category.toLowerCase().trim() == 'hse'
         ? 'WelcomeDashboard'
         : 'DashboardCategory',
-      {category, description, icon},
+      {
+        category,
+        description,
+        icon: category.toLowerCase().trim() == 'hse' ? null : icon,
+      },
     );
   };
 
