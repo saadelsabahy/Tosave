@@ -5,13 +5,7 @@
   "change":"تغيير",
   "changelanguage":"تغيير اللغه",
   "language":"العربيه",
-   "navigation": {
-     "drawer": {
-   
-     },
-     "stack": {
-       
-     }
-   }
+  "editprofile":"تعديل معلوماتي",
+  "logout":"تسجيل الخروج"
  
  }

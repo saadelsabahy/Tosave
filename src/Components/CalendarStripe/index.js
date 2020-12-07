@@ -12,7 +12,6 @@ import {MonthlyCalendar} from '../../Svgs';
 // import {FlatList} from 'react-native-gesture-handler';
 dayjs.extend(localeData);
 const CustomCalendarStripe = ({calenderMonthStyle}) => {
-  console.log(dayjs.monthsShort().length);
   return (
     <View style={styles.container}>
       <FlatList
@@ -46,6 +45,7 @@ const styles = StyleSheet.create({
   container: {
     height: MONTHLY_CALENDAR_CONTAINER,
     backgroundColor: '#F3F3F3',
+    width: '100%',
   },
   monthContainer: {
     marginHorizontal: 10,

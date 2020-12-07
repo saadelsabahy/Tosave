@@ -8,6 +8,7 @@ import {
   GREEN100,
   FONT_16,
   BADGE_COLOR,
+  calcHeight,
 } from '../../constants/design/colorsAndSizes';
 import {CorrectIcon, DeleteIcon, DeleteIconWithBg, EditIcon} from '../../Svgs';
 import {CustomText} from '../customText';
@@ -85,7 +86,7 @@ export {MonthlyReportCard};
 const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH - 20,
-    height: 105,
+    height: calcHeight(105),
     borderRadius: 18,
     backgroundColor: '#ffffff',
     shadowColor: 'rgba(0, 0, 0, 0.16)',
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     color: '#7c7c7c',
   },
   endActionContainer: {
-    flex: 0.35,
+    flex: 0.45,
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',

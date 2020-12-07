@@ -1,8 +1,17 @@
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {WHITE_COLOR} from '../../constants/design/colorsAndSizes';
+import {FONT_13, WHITE_COLOR} from '../../constants/design/colorsAndSizes';
+import {CameraIcon} from '../../Svgs';
+import {CustomText} from '../customText';
 
-const PhotoRecangle = ({onAvatarPressed, containerStyle, imageStyle, uri}) => {
+const PhotoRecangle = ({
+  onAvatarPressed,
+  containerStyle,
+  imageStyle,
+  pickIcon,
+  uri,
+  pickText,
+}) => {
   return (
     <Pressable
       style={[styles.container, containerStyle]}
@@ -15,6 +24,12 @@ const PhotoRecangle = ({onAvatarPressed, containerStyle, imageStyle, uri}) => {
         }}
         style={[styles.image, imageStyle]}
       />
+      {pickIcon && (
+        <View style={[styles.pickIconContainer]}>
+          <CameraIcon fill={WHITE_COLOR} />
+          <CustomText text={pickText} textStyle={[styles.pickText]} />
+        </View>
+      )}
     </Pressable>
   );
 };
@@ -47,5 +62,21 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 6,
     shadowOpacity: 1,
+  },
+  pickIconContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,.5)',
+    borderRadius: 17,
+  },
+  pickText: {
+    fontSize: FONT_13,
+    fontWeight: '600',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#ffffff',
   },
 });

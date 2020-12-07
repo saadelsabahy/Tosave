@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     alignSelf: 'center',
+    // marginVertical: 5,
   },
   backGroundLineContainer: {
     position: 'absolute',

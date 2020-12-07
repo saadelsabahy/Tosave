@@ -1,7 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {WelcomeDashboard, WelcomeScreen} from '../../Screens';
+import {
+  DashboardCategoryDetails,
+  WelcomeDashboard,
+  WelcomeScreen,
+  Notifications,
+} from '../../Screens';
+import CreatReportStack from '../CreateReportStack';
 const WelcomeStack = createStackNavigator();
 const WelcomeStackNavigation = () => {
   return (
@@ -13,6 +19,12 @@ const WelcomeStackNavigation = () => {
         name="WelcomeDashboard"
         component={WelcomeDashboard}
       />
+      <WelcomeStack.Screen
+        name="DashboardCategory"
+        component={DashboardCategoryDetails}
+      />
+      <WelcomeStack.Screen name="Notifications" component={Notifications} />
+      <WelcomeStack.Screen name="CreateReport" component={CreatReportStack} />
     </WelcomeStack.Navigator>
   );
 };

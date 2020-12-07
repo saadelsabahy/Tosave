@@ -23,3 +23,6 @@ export * from './DamageType';
 export * from './ListItem';
 export * from './Signature';
 export * from './LanguageBottomSheet';
+export * from './TextContainer';
+export * from './Block';
+export * from './NotificationCard';

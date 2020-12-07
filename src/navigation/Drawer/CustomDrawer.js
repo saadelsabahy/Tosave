@@ -1,41 +1,105 @@
-import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Button, Text} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {
+  View,
+  StyleSheet,
+  Button,
+  Text,
+  I18nManager,
+  Pressable,
+} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import {useTranslation} from 'react-i18next';
 
 import Feather from 'react-native-vector-icons/Feather';
+import {
+  calcFont,
+  calcHeight,
+  calcWidth,
+  FONT_16,
+  GREEN50,
+  SCREEN_HEIGHT,
+  RED_COLOR,
+} from '../../constants/design/colorsAndSizes';
+import {IconButton} from 'react-native-paper';
+import PhotoRecangle from '../../Components/PhotoRecangle';
+import {CustomButton, CustomText} from '../../Components';
+import {EditIconWithoutBg} from '../../Svgs';
+import {AuthenticationContext} from '../AuthContext';
 
-function CustomDrawer(props) {
+function CustomDrawer({navigation, ...props}) {
+  const {authContext} = useContext(AuthenticationContext);
+  const {t, i18n} = useTranslation();
+
+  //logot
+  const onLogoutPressed = () => {
+    authContext.signOut();
+  };
   return (
     <DrawerContentScrollView
       {...props}
       scrollEnabled={false}
       contentContainerStyle={{flex: 1}}>
-      <DrawerItem
-        label="Edit profile"
-        onPress={() => props.navigation.navigate('EditProfile')}
-        icon={() => (
-          <Feather name="home" size={25} style={{marginHorizontal: 10}} />
-        )}
-      />
-      {/* <DrawerItem
-        label="Contacts"
-        onPress={() => props.navigation.navigate('Contacts')}
-        icon={() => (
-          <Feather name="menu" size={25} style={{marginHorizontal: 10}} />
-        )}
-      />
-      <DrawerItem
-        label="Notifications"
-        onPress={() => props.navigation.navigate('Notifications')}
-        icon={() => (
-          <AntDesign name="contacts" size={25} style={{marginHorizontal: 10}} />
-        )}
-      /> */}
+      {/* header */}
+      <View style={[styles.header]}>
+        <IconButton
+          icon="close"
+          color={'#263231'}
+          size={calcFont(25)}
+          onPress={() => navigation.closeDrawer()}
+          style={styles.closeIcon}
+        />
+        <View style={[styles.imageContainer]}>
+          <PhotoRecangle containerStyle={styles.photo} />
+          <CustomText text={'user name'} textStyle={[styles.userName]} />
+        </View>
+      </View>
+
+      {/* drawer items */}
+
+      <View style={[styles.drawerItemsContainer]}>
+        {/* edit profile item */}
+        <Pressable
+          style={[styles.drawerItem]}
+          onPress={() => navigation.navigate('EditProfile')}>
+          <Pressable style={[styles.iconContainer]}>
+            <EditIconWithoutBg style={{margin: 0, padding: 0}} />
+          </Pressable>
+          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+        </Pressable>
+
+        {/* edit profile item */}
+        <Pressable
+          style={[styles.drawerItem]}
+          onPress={() => navigation.navigate('EditProfile')}>
+          <Pressable style={[styles.iconContainer]}>
+            <EditIconWithoutBg style={{margin: 0, padding: 0}} />
+          </Pressable>
+          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+        </Pressable>
+
+        {/* edit profile item */}
+        <Pressable
+          style={[styles.drawerItem]}
+          onPress={() => navigation.navigate('EditProfile')}>
+          <Pressable style={[styles.iconContainer]}>
+            <EditIconWithoutBg style={{margin: 0, padding: 0}} />
+          </Pressable>
+          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+        </Pressable>
+      </View>
+      <View style={[styles.buttonContainer]}>
+        <CustomButton
+          color={RED_COLOR}
+          containerStyle={styles.button}
+          buttonText={t('logout')}
+          onPress={onLogoutPressed}
+        />
+      </View>
     </DrawerContentScrollView>
   );
 }
@@ -44,6 +108,77 @@ const styles = StyleSheet.create({
   stack: {
     flex: 1,
     overflow: 'hidden',
+  },
+  header: {
+    width: '100%',
+    height: SCREEN_HEIGHT / 3,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  label: {
+    flex: 0.92,
+    fontFamily: 'Montserrat',
+    textTransform: 'capitalize',
+    fontSize: FONT_16 - 1,
+    writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+    padding: 0,
+    margin: 0,
+    fontWeight: '600',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#263231',
+    marginHorizontal: 0,
+    paddingHorizontal: 0,
+  },
+  closeIcon: {alignSelf: 'flex-start'},
+  imageContainer: {
+    width: '90%',
+    height: '70%',
+    justifyContent: 'space-evenly',
+  },
+  userName: {
+    fontSize: calcFont(20),
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#11a99d',
+  },
+  photo: {
+    width: 79,
+    height: 79,
+    borderRadius: 22,
+  },
+  iconContainer: {
+    width: calcWidth(45),
+    height: calcHeight(45),
+    borderRadius: calcFont(9),
+    backgroundColor: GREEN50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  drawerItemsContainer: {
+    width: '90%',
+    height: SCREEN_HEIGHT / 2.5,
+    alignSelf: 'center',
+    justifyContent: 'space-evenly',
+  },
+  buttonContainer: {
+    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  drawerItem: {
+    width: '100%',
+    height: SCREEN_HEIGHT / 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+  },
+  button: {
+    width: '80%',
+    borderTopStartRadius: 0,
+    borderBottomStartRadius: 0,
   },
 });
 

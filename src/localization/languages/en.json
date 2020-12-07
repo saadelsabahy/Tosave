@@ -5,13 +5,9 @@
   "change":"change",
   "changelanguage":"change language",
   "language":"english",
-   "navigation": {
-     "drawer": {
+  "editprofile":"edit my info",
+  "logout":"log out"
+     
    
-     },
-     "stack": {
-       
-     }
-   }
  
  }

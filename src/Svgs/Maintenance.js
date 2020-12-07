@@ -9,7 +9,7 @@ function MaintenanceIcon(props) {
       height={72.999}
       viewBox="0 0 73 72.999"
       {...props}>
-      <G data-name="Group 22" fill="#fff">
+      <G data-name="Group 22" fill={props.fill || '#fff'}>
         <Path
           data-name="Path 52917"
           d="M63.468 34.42a1.331 1.331 0 001.331-1.331v-3.378h-2.663v3.378a1.332 1.332 0 001.332 1.331z"

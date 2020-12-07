@@ -19,7 +19,7 @@ function AddIcon(props) {
             height={44}
             rx={13}
             transform="translate(16.5 16.5)"
-            fill="#263231"
+            fill={'#263231'}
           />
         </G>
         <Path

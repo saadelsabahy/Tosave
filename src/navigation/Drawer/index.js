@@ -36,13 +36,15 @@ const Drawer = () => {
 
   const borderRadius = Animated.interpolate(progressing, {
     inputRange: [0, 1],
-    outputRange: [0, 10],
+    outputRange: [0, 50],
   });
   const screenStyle = {borderRadius, transform: [{scale}]};
-
+  const updatProgressing = (progress) => {
+    setprogressing(progress);
+  };
   return (
     <MainDrawer.Navigator
-      initialRouteName="EditProfile"
+      initialRouteName="DrawerStack"
       drawerType="slide"
       overlayColor="transparent"
       contentContainerStyle={{flex: 1}}
@@ -51,23 +53,31 @@ const Drawer = () => {
         activeTintColor: WHITE_COLOR,
         inactiveTintColor: WHITE_COLOR,
       }}
-      drawerStyle={{width: '55%'}}
+      drawerStyle={{width: '60%'}}
       sceneContainerStyle={{backgroundColor: 'transparent'}}
       drawerContent={(props) => {
-        setprogressing(props.progress);
+        updatProgressing(props.progress);
+        /* setprogressing(props.progress); */
         return <CustomDrawer {...props} />;
       }}>
       <MainDrawer.Screen name="DrawerStack">
         {(props) => <DrawerStack {...props} style={screenStyle} />}
       </MainDrawer.Screen>
+      <MainDrawer.Screen name="EditProfile" component={EditProfile} />
     </MainDrawer.Navigator>
   );
 };
 const styles = StyleSheet.create({
   stack: {
     flex: 1,
-    overflow: 'hidden',
-    elevation: 5,
+    shadowColor: WHITE_COLOR,
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 10,
   },
 });
 export default Drawer;

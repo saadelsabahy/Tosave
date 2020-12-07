@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {
+  calcHeight,
   FONT_16,
   FONT_22,
   GREEN100,
@@ -43,9 +44,9 @@ export {ListItem};
 
 const styles = StyleSheet.create({
   card: {
-    width: SCREEN_WIDTH / 2 - 10,
+    width: SCREEN_WIDTH / 2 - 20,
     margin: 5,
-    height: 200,
+    height: calcHeight(200),
     borderRadius: 18,
     backgroundColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',

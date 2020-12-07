@@ -7,36 +7,8 @@
  */
 
 import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  StatusBar,
-  View,
-  I18nManager,
-  TouchableOpacity,
-  Image,
-  Pressable,
-} from 'react-native';
-import {ThemeProvider} from 'react-native-paper';
-import {MonthlyReportCard, CustomSignature, CustomText} from './src/Components';
-import RNBootSplash from 'react-native-bootsplash';
-import CommentInput from './src/Components/CommentInput';
-import {
-  ChangePasswordLock,
-  CheckedSvg,
-  HsaDashboardIcon,
-  LoginWorldIcon,
-  UnChecked,
-  UnCheckedSvg,
-} from './src/Svgs';
-import {
-  calcFont,
-  calcHeight,
-  calcWidth,
-  GREEN50,
-  WHITE_COLOR,
-} from './src/constants/design/colorsAndSizes';
-import {Login} from './src/Screens';
+import {StyleSheet, StatusBar, I18nManager, SafeAreaView} from 'react-native';
+import {WHITE_COLOR} from './src/constants/design/colorsAndSizes';
 import './src/localization';
 import AuthContext from './src/navigation/AuthContext';
 import AppNavigation from './src/navigation';

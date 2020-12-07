@@ -27,3 +27,6 @@ export * from './Checked';
 export * from './LoginWorldIcon';
 export * from './SaudiArabia';
 export * from './England';
+export * from './CloseIcon';
+export * from './EditIconWithoutBg';
+export * from './HelpDeskIcon';

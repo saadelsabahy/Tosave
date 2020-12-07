@@ -2,16 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import {AddIcon} from '../../Svgs';
 
-const CreateMonthlyReportIcon = () => {
+const CreateMonthlyReportIcon = ({...props}) => {
   return (
     <Pressable
-      onPress={() => {
-        console.log('press create');
-      }}
       style={({pressed}) => [
         styles.addIconContainer,
         {opacity: pressed ? 0.7 : 1},
-      ]}>
+      ]}
+      {...props}>
       <AddIcon />
     </Pressable>
   );
@@ -22,7 +20,7 @@ export {CreateMonthlyReportIcon};
 const styles = StyleSheet.create({
   addIconContainer: {
     position: 'absolute',
-    end: 10,
-    bottom: 10,
+    end: 5,
+    bottom: 5,
   },
 });

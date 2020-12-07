@@ -37,3 +37,4 @@ export const GREEN50 = 'rgba(17,169,157,.1)';
 export const WHITE_COLOR = '#fff';
 export const BADGE_COLOR = '#8DC53E';
 export const EYE_ICON_COLOR = '#848484';
+export const RED_COLOR = '#f3184d';

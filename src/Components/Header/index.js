@@ -8,6 +8,7 @@ import {
   GREEN100,
   SCREEN_WIDTH,
   SCREEN_HEIGHT,
+  calcFont,
 } from '../../constants/design/colorsAndSizes';
 import {NotificationIcon, Logo} from '../../Svgs';
 import PhotoRecangle from '../PhotoRecangle';
@@ -23,13 +24,20 @@ const Header = ({
   back,
   headerTitleStyle,
   title,
+  backOnly,
+  noPhoto,
 }) => {
   // const notificationsNumber = 10;
 
   return (
     <Appbar.Header style={[styles.header, headerStyle]}>
       {back ? (
-        <Appbar.BackAction onPress={goBack} color={GREEN100} size={25} />
+        <Appbar.BackAction
+          onPress={goBack}
+          color={GREEN100}
+          size={calcFont(25)}
+          style={{marginStart: 0}}
+        />
       ) : (
         <Logo />
       )}
@@ -37,34 +45,37 @@ const Header = ({
         title={title}
         titleStyle={[styles.title, headerTitleStyle]}
       />
-      <View style={styles.rowContainer}>
-        <Pressable onPress={onNotificationsPressed} style={{flex: 1}}>
-          <View
-            style={StyleSheet.flatten(
-              {
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: notificationsNumber ? 'flex-end' : 'center',
-                transform: [{rotate: notificationsNumber ? '30deg' : '0deg'}],
-                borderRadius: Math.round(SCREEN_WIDTH / 2 + SCREEN_HEIGHT / 2),
-                // alignItems: 'center',
-              },
-              notificationIconContainerStyle,
-            )}>
-            {notificationsNumber && (
-              <Badge style={[styles.badge, badgeStyle]}>
-                {notificationsNumber}
-              </Badge>
-            )}
-            <NotificationIcon
-              style={{
-                top: notificationsNumber ? -15 : 0,
-              }}
-            />
-          </View>
-        </Pressable>
-        <PhotoRecangle />
-      </View>
+      {!backOnly && (
+        <View style={styles.rowContainer}>
+          <Pressable onPress={onNotificationsPressed} style={{flex: 1}}>
+            <View
+              style={[
+                styles.notificationIconContair,
+                {
+                  justifyContent: notificationsNumber ? 'flex-end' : 'center',
+                  transform: [{rotate: notificationsNumber ? '30deg' : '0deg'}],
+                  borderRadius: Math.round(
+                    SCREEN_WIDTH / 2 + SCREEN_HEIGHT / 2,
+                  ),
+                },
+                notificationIconContainerStyle,
+              ]}>
+              {notificationsNumber && (
+                <Badge style={[styles.badge, badgeStyle]}>
+                  {notificationsNumber}
+                </Badge>
+              )}
+              <NotificationIcon
+                style={{
+                  top: notificationsNumber ? -15 : 0,
+                  //start: notificationsNumber ? 15 : 0,
+                }}
+              />
+            </View>
+          </Pressable>
+          {!noPhoto && <PhotoRecangle onAvatarPressed={onMenuPressed} />}
+        </View>
+      )}
     </Appbar.Header>
   );
 };
@@ -72,8 +83,9 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: 'transparent',
     elevation: 0,
-
     alignSelf: 'center',
+    width: '100%',
+    marginHorizontal: 0,
   },
   title: {
     fontFamily: 'Montserrat',
@@ -116,6 +128,10 @@ const styles = StyleSheet.create({
     margin: 0,
     fontWeight: 'bold',
     transform: [{rotate: '-30deg'}],
+  },
+  notificationIconContair: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
 

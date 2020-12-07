@@ -17,6 +17,7 @@ const LoginInput = ({
   inputStyle,
   referance,
   errorText,
+  containerStyle = {},
   ...props
 }) => {
   const theme = {
@@ -32,10 +33,12 @@ const LoginInput = ({
     },
   };
   return (
-    <View>
+    <View style={[containerStyle]}>
       <View style={[styles.inputContainer, inputContainerStyle]}>
         <TextInput
-          label={`${label.substring(0, 1).toUpperCase()}${label.substring(1)}`}
+          label={`${label?.substring(0, 1).toUpperCase()}${label?.substring(
+            1,
+          )}`}
           style={[styles.input, inputStyle]}
           theme={theme}
           underlineColor="transparent"

@@ -13,7 +13,7 @@ const Segment = ({values = [], selectedIndex, onChange}) => {
     <View style={[styles.container]}>
       <SegmentedControl
         values={values?.map((item) => item[0].toUpperCase() + item.slice(1))}
-        selectedIndex={selectedIndex}
+        selectedIndex={selectedIndex || 0}
         onChange={
           onChange /* (event) => {
           setSelectedIndex(event.nativeEvent.selectedSegmentIndex);

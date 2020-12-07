@@ -39,7 +39,9 @@ const Login = () => {
   const bottomSheetRef = useRef(null);
   const [secureInput, setsecureInput] = useState(true);
   const [selectedLanguage, setselectedLanguage] = useState('en');
+  const {t, i18n} = useTranslation();
 
+  //select new language
   const changeLanguage = (lang) => {
     setselectedLanguage(lang);
   };
@@ -48,7 +50,6 @@ const Login = () => {
     console.log(selectedLanguage);
     bottomSheetRef.current?.close();
   };
-  const {t, i18n} = useTranslation();
 
   //toggleSecureInput
   const toggleSecureInput = () => {
