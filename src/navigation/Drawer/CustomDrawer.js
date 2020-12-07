@@ -28,16 +28,21 @@ import {
 import {IconButton} from 'react-native-paper';
 import PhotoRecangle from '../../Components/PhotoRecangle';
 import {CustomButton, CustomText} from '../../Components';
-import {EditIconWithoutBg} from '../../Svgs';
+import {EditIconWithoutBg, LoginWorldIcon} from '../../Svgs';
 import {AuthenticationContext} from '../AuthContext';
+import {LanguageSheetContext} from '../../context/LanguageSheetProvider';
 
 function CustomDrawer({navigation, ...props}) {
   const {authContext} = useContext(AuthenticationContext);
+  const {languageModalRef} = useContext(LanguageSheetContext);
   const {t, i18n} = useTranslation();
 
   //logot
   const onLogoutPressed = () => {
     authContext.signOut();
+  };
+  const onChangeLanguage = () => {
+    languageModalRef.current?.open();
   };
   return (
     <DrawerContentScrollView
@@ -64,7 +69,10 @@ function CustomDrawer({navigation, ...props}) {
       <View style={[styles.drawerItemsContainer]}>
         {/* edit profile item */}
         <Pressable
-          style={[styles.drawerItem]}
+          style={({pressed}) => [
+            styles.drawerItem,
+            {opacity: pressed ? 0.5 : 1},
+          ]}
           onPress={() => navigation.navigate('EditProfile')}>
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
@@ -74,7 +82,10 @@ function CustomDrawer({navigation, ...props}) {
 
         {/* edit profile item */}
         <Pressable
-          style={[styles.drawerItem]}
+          style={({pressed}) => [
+            styles.drawerItem,
+            {opacity: pressed ? 0.5 : 1},
+          ]}
           onPress={() => navigation.navigate('EditProfile')}>
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
@@ -84,12 +95,15 @@ function CustomDrawer({navigation, ...props}) {
 
         {/* edit profile item */}
         <Pressable
-          style={[styles.drawerItem]}
-          onPress={() => navigation.navigate('EditProfile')}>
+          style={({pressed}) => [
+            styles.drawerItem,
+            {opacity: pressed ? 0.5 : 1},
+          ]}
+          onPress={onChangeLanguage}>
           <Pressable style={[styles.iconContainer]}>
-            <EditIconWithoutBg style={{margin: 0, padding: 0}} />
+            <LoginWorldIcon style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+          <CustomText text={t('language')} textStyle={[styles.label]} />
         </Pressable>
       </View>
       <View style={[styles.buttonContainer]}>

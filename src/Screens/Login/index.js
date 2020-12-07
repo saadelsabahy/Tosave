@@ -32,6 +32,7 @@ import {useTranslation} from 'react-i18next';
 import {TextInput} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AuthenticationContext} from '../../navigation/AuthContext';
+import {LanguageSheetContext} from '../../context/LanguageSheetProvider';
 
 const Login = () => {
   const {authContext, state} = useContext(AuthenticationContext);
@@ -40,16 +41,7 @@ const Login = () => {
   const [secureInput, setsecureInput] = useState(true);
   const [selectedLanguage, setselectedLanguage] = useState('en');
   const {t, i18n} = useTranslation();
-
-  //select new language
-  const changeLanguage = (lang) => {
-    setselectedLanguage(lang);
-  };
-  //onChangeLanguageComplete
-  const onChangeLanguageComplete = () => {
-    console.log(selectedLanguage);
-    bottomSheetRef.current?.close();
-  };
+  const {languageModalRef} = useContext(LanguageSheetContext);
 
   //toggleSecureInput
   const toggleSecureInput = () => {
@@ -71,7 +63,7 @@ const Login = () => {
         <View style={[styles.topContainer]}>
           <Pressable
             style={styles.worldIconContainer}
-            onPress={() => bottomSheetRef.current?.open()}>
+            onPress={() => languageModalRef.current?.open()}>
             <LoginWorldIcon />
           </Pressable>
           <Logo />
@@ -113,17 +105,6 @@ const Login = () => {
           </View>
         </View>
       </KeyboardAwareScrollView>
-      <CustomBottomSheet referance={bottomSheetRef}>
-        <LanguageSheet
-          arabic={t('language', {lng: 'ar'})}
-          english={t('language', {lng: 'en'})}
-          selectedLanguage={selectedLanguage}
-          changeLanguage={changeLanguage}
-          buttonText={t('change')}
-          onChangeLanguageComplete={onChangeLanguageComplete}
-          title={t('changelanguage')}
-        />
-      </CustomBottomSheet>
     </View>
   );
 };
