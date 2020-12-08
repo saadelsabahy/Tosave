@@ -15,3 +15,8 @@ const MONTHES = [
 
 export const IMAGE_LENGTH = 9;
 export const IMAGE_GRID_COLUMNS = 3;
+export const CATEGORY_INCLUDES_PRANCHES = [
+  'training',
+  'help desk',
+  'first aid',
+];

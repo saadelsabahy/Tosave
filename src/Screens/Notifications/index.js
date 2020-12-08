@@ -10,11 +10,14 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {NotificationIcon} from '../../Svgs';
 
-const Notifications = () => {
+const Notifications = ({navigation}) => {
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={[styles.container]}>
       <Block>
-        <Header back backOnly />
+        <Header back backOnly goBack={goBack} />
 
         <View style={[styles.headerTextContainer]}>
           <NotificationIcon fill={GREEN100} />

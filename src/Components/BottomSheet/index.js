@@ -21,9 +21,10 @@ const CustomBottomSheet = ({children, snapPoints, referance}) => {
       modalStyle={[styles.modal]}
       disableScrollIfPossible={false}
       handleStyle={[styles.handle]}
-      modalHeight={snapPoints || SCREEN_HEIGHT / 1.9}
+      modalHeight={snapPoints + 10 || SCREEN_HEIGHT / 2}
       threshold={20}
-      overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
+      overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}
+      avoidKeyboardLikeIOS>
       {children}
     </Modalize>
   );
@@ -33,7 +34,7 @@ export {CustomBottomSheet};
 
 const styles = StyleSheet.create({
   modal: {
-    flex: 1,
+    height: null,
     width: SCREEN_WIDTH,
     backgroundColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',

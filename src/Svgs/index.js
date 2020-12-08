@@ -30,3 +30,7 @@ export * from './England';
 export * from './CloseIcon';
 export * from './EditIconWithoutBg';
 export * from './HelpDeskIcon';
+export * from './ResetIcon';
+export * from './DurationIcon';
+export * from './FilterIcon';
+export * from './EmployeeIcon';

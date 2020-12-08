@@ -4,6 +4,7 @@ import {
   Block,
   CreateMonthlyReportIcon,
   CustomCalendarStripe,
+  CustomDropdown,
   CustomText,
   Header,
   MonthlyReportCard,
@@ -19,7 +20,7 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {LIST_DATA} from '../../constants/design/MockData';
-
+import {CATEGORY_INCLUDES_PRANCHES} from '../../constants/ConstantsVariables';
 const DashboardCategoryDetails = ({navigation, route}) => {
   const {category, icon} = route.params;
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -40,6 +41,9 @@ const DashboardCategoryDetails = ({navigation, route}) => {
 
   const goBack = () => {
     navigation.goBack();
+  };
+  const onItemPressed = ({date}) => {
+    navigation.navigate('ReportDetails', {category, date});
   };
   return (
     <View style={[styles.container]}>
@@ -67,7 +71,11 @@ const DashboardCategoryDetails = ({navigation, route}) => {
         />
 
         <View style={[styles.calendarStripeContainer]}>
-          <CustomCalendarStripe />
+          {CATEGORY_INCLUDES_PRANCHES.includes(category.toLowerCase()) ? (
+            <CustomDropdown />
+          ) : (
+            <CustomCalendarStripe />
+          )}
         </View>
 
         <View style={styles.listContainer}>
@@ -87,6 +95,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
                   date={date}
                   done={selectedIndex == 2}
                   badgeNumber={selectedIndex == 1 && badgeNumber}
+                  onPress={() => onItemPressed({date})}
                 />
               );
             }}

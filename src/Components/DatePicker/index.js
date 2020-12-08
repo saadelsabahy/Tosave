@@ -16,6 +16,7 @@ const CalendarPickerRange = ({
   maxDate,
   onDateChange,
   startFromMonday,
+  referance,
   ...props
 }) => {
   /*   const onDateChange = (date, type) => {
@@ -31,7 +32,10 @@ const CalendarPickerRange = ({
   return (
     <>
       <CalendarPicker
+        ref={referance}
         allowRangeSelection={allowRangeSelection}
+        selectedStartDate={selectedStartDate}
+        selectedEndDate={selectedEndDate}
         minDate={minDate}
         maxDate={maxDate}
         todayBackgroundColor={'transparent'}

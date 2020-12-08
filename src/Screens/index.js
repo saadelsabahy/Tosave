@@ -4,4 +4,6 @@ export * from './welcomeScreen';
 export * from './WelcomeDashboard';
 export * from './DashboardCategoryDetails';
 export * from './Notifications';
+export * from './changePassword';
 export * from './CreateReport';
+export * from './ReportDetails';

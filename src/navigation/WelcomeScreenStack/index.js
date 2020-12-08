@@ -6,8 +6,9 @@ import {
   WelcomeDashboard,
   WelcomeScreen,
   Notifications,
+  CreateReport,
+  ReportDetails,
 } from '../../Screens';
-import CreatReportStack from '../CreateReportStack';
 const WelcomeStack = createStackNavigator();
 const WelcomeStackNavigation = () => {
   return (
@@ -23,8 +24,9 @@ const WelcomeStackNavigation = () => {
         name="DashboardCategory"
         component={DashboardCategoryDetails}
       />
+      <WelcomeStack.Screen name="ReportDetails" component={ReportDetails} />
       <WelcomeStack.Screen name="Notifications" component={Notifications} />
-      <WelcomeStack.Screen name="CreateReport" component={CreatReportStack} />
+      <WelcomeStack.Screen name="CreateReport" component={CreateReport} />
     </WelcomeStack.Navigator>
   );
 };

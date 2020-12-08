@@ -86,11 +86,11 @@ function CustomDrawer({navigation, ...props}) {
             styles.drawerItem,
             {opacity: pressed ? 0.5 : 1},
           ]}
-          onPress={() => navigation.navigate('EditProfile')}>
+          onPress={() => navigation.navigate('ChangePassword')}>
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+          <CustomText text={t('changepassword')} textStyle={[styles.label]} />
         </Pressable>
 
         {/* edit profile item */}

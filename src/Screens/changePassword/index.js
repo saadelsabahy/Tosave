@@ -8,14 +8,16 @@ import {
   Header,
   LoginInput,
 } from '../../Components';
-import PhotoRecangle from '../../Components/PhotoRecangle';
 import {
   FONT_25,
+  INPUTS_AND_BUTTONS_HEIGHT,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
+  WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
+import {ChangePasswordLock} from '../../Svgs';
 
-const EditProfile = ({navigation}) => {
+const ChangePassword = ({navigation}) => {
   const goBack = () => {
     navigation.goBack();
   };
@@ -24,7 +26,8 @@ const EditProfile = ({navigation}) => {
       <KeyboardAwareScrollView
         style={[styles.KeyboardAwareScrollView]}
         contentContainerStyle={{alignItems: 'center'}}
-        enableOnAndroid>
+        enableOnAndroid
+        extraScrollHeight={INPUTS_AND_BUTTONS_HEIGHT}>
         <Block>
           <Header
             back
@@ -37,22 +40,38 @@ const EditProfile = ({navigation}) => {
           />
 
           <View style={[styles.screenNameContainer]}>
-            <CustomText text={'edit my info'} textStyle={[styles.screenName]} />
+            <CustomText
+              text={'change password'}
+              textStyle={[styles.screenName]}
+            />
           </View>
 
           <View style={[styles.photoContainer]}>
-            <PhotoRecangle
-              pickIcon
-              containerStyle={{width: '50%', height: '80%'}}
-              /* onAvatarPressed={() => console.log('a')} */
-              pickText={'Change photo'}
-            />
+            <ChangePasswordLock />
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                start: -40,
+                opacity: 0.07,
+                //backgroundColor: 'red',
+                height: '95%',
+                width: '70%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <ChangePasswordLock width={'100%'} height={'100%'} />
+            </View>
           </View>
 
           <View style={[styles.inputsContainer]}>
             <LoginInput
-              label={'username'}
-              containerStyle={{marginVertical: 20}}
+              label={'old password'}
+              containerStyle={{marginBottom: 10}}
+            />
+            <LoginInput
+              label={'old password'}
+              containerStyle={{marginBottom: 20}}
             />
             <CustomButton />
           </View>
@@ -62,12 +81,13 @@ const EditProfile = ({navigation}) => {
   );
 };
 
-export {EditProfile};
+export {ChangePassword};
 
 const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
+    backgroundColor: WHITE_COLOR,
   },
   KeyboardAwareScrollView: {
     width: SCREEN_WIDTH,
@@ -91,9 +111,9 @@ const styles = StyleSheet.create({
   },
   photoContainer: {
     width: '100%',
-    height: SCREEN_HEIGHT / 3,
+    height: SCREEN_HEIGHT / 2.5,
     justifyContent: 'center',
-    alignItems: 'center',
+    //backgroundColor: '#ddd',
   },
   inputsContainer: {
     width: '100%',

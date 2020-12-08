@@ -7,7 +7,7 @@ import {
   BADGE_COLOR,
   MONTHLY_CALENDAR_CONTAINER,
 } from '../../constants/design/colorsAndSizes';
-import HsaCard from '../ListItem';
+import HsaCard from '../WelcomeDashboardListItem';
 import {MonthlyCalendar} from '../../Svgs';
 // import {FlatList} from 'react-native-gesture-handler';
 dayjs.extend(localeData);

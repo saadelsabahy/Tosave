@@ -17,7 +17,7 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 
-const ListItem = ({onItemPressed, ItemIcon, itemName}) => {
+const WelcomeDashboardListItem = ({onItemPressed, ItemIcon, itemName}) => {
   return (
     <Pressable style={[styles.card]} onPress={onItemPressed}>
       {ItemIcon && (
@@ -40,7 +40,7 @@ const ListItem = ({onItemPressed, ItemIcon, itemName}) => {
   );
 };
 
-export {ListItem};
+export {WelcomeDashboardListItem};
 
 const styles = StyleSheet.create({
   card: {

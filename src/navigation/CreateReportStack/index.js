@@ -1,33 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {
-  DashboardCategoryDetails,
-  WelcomeDashboard,
-  WelcomeScreen,
-  Notifications,
-  CreateReportFirstly,
-  CreateReportSecondly,
-  CreateReportFinaly,
-} from '../../Screens';
+import {CreateReport} from '../../Screens';
 const CreateReportStack = createStackNavigator();
 const CreatReportStack = () => {
   return (
     <CreateReportStack.Navigator
-      initialRouteName="FirstReport"
+      initialRouteName="CreateReport"
       screenOptions={{headerShown: false}}>
-      <CreateReportStack.Screen
-        name="FirstReport"
-        component={CreateReportFirstly}
-      />
-      <CreateReportStack.Screen
-        name="SecondReport"
-        component={CreateReportSecondly}
-      />
-      <CreateReportStack.Screen
-        name="FinalReport"
-        component={CreateReportFinaly}
-      />
+      <CreateReportStack.Screen name="CreateReport" component={CreateReport} />
     </CreateReportStack.Navigator>
   );
 };

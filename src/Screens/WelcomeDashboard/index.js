@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
-import {CustomText, Header, ListItem} from '../../Components';
+import {CustomText, Header, WelcomeDashboardListItem} from '../../Components';
 import {
   FONT_18,
   FONT_25,
@@ -42,7 +42,7 @@ const WelcomeDashboard = ({navigation, route}) => {
             keyExtractor={(item, index) => `${item.id}`}
             renderItem={({item: {icon, category, id}, index}) => {
               return (
-                <ListItem
+                <WelcomeDashboardListItem
                   ItemIcon={icon}
                   itemName={category}
                   onItemPressed={() => onItemPressed({category, icon})}

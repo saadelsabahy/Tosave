@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Button} from 'react-native-paper';
 import Animated from 'react-native-reanimated';
-import {EditProfile} from '../../Screens';
+import {ChangePassword, CreateReport, EditProfile} from '../../Screens';
 import {createStackNavigator} from '@react-navigation/stack';
 import CustomDrawer from './CustomDrawer';
 import {WHITE_COLOR} from '../../constants/design/colorsAndSizes';
@@ -20,7 +20,7 @@ function DrawerStack({navigation, style}) {
           headerShown: false,
         }}>
         <Stack.Screen name="WelcomeStack" component={WelcomeStackNavigation} />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="CreateReport" component={CreateReport} />
       </Stack.Navigator>
     </Animated.View>
   );
@@ -64,6 +64,7 @@ const Drawer = () => {
         {(props) => <DrawerStack {...props} style={screenStyle} />}
       </MainDrawer.Screen>
       <MainDrawer.Screen name="EditProfile" component={EditProfile} />
+      <MainDrawer.Screen name="ChangePassword" component={ChangePassword} />
     </MainDrawer.Navigator>
   );
 };

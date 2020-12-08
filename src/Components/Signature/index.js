@@ -50,6 +50,7 @@ const CustomSignature = ({reference, handleOk}) => {
           webStyle={style}
           penColor={GREEN100}
           backgroundColor="transparent"
+          autoClear={false}
         />
       </View>
     </View>
@@ -59,7 +60,7 @@ const CustomSignature = ({reference, handleOk}) => {
 const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH - 20,
-    height: SCREEN_HEIGHT / 2,
+    flex: 1,
     alignSelf: 'center',
     borderRadius: 19,
     backgroundColor: '#f3f3f3',

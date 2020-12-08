@@ -150,11 +150,11 @@ export function makeStyles(params) {
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'space-between',
-      width: containerWidth - 5,
+      width: '97%',
       backgroundColor: 'rgba(0,0,0,0.0)',
       borderRadius: 10,
       backgroundColor: '#11a99d',
-      height: containerHeight / 20,
+      height: containerHeight / 17,
     },
 
     monthYearHeaderWrapper: {

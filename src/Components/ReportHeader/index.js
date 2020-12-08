@@ -12,13 +12,19 @@ import {CustomText} from '../customText';
 const ReportHeader = ({number, numberStyle, headerName, headerNameStyle}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.numberContainer}>
-        <CustomText text={number} style={[styles.number, numberStyle]} />
-      </View>
+      {number && (
+        <View style={styles.numberContainer}>
+          <CustomText text={number} style={[styles.number, numberStyle]} />
+        </View>
+      )}
       <View style={styles.headerTextContainer}>
         <CustomText
           text={headerName}
-          style={[styles.headerText, headerNameStyle]}
+          style={[
+            styles.headerText,
+            {marginStart: number ? 0 : 10},
+            headerNameStyle,
+          ]}
         />
       </View>
     </View>
