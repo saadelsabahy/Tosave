@@ -10,4 +10,5 @@ import App from './App';
 import {name as appName} from './app.json';
 
 dayjs.locale(I18nManager.isRTL ? 'ar' : 'en');
+
 AppRegistry.registerComponent(appName, () => App);

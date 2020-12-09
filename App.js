@@ -13,7 +13,8 @@ import './src/localization';
 import AuthContext from './src/navigation/AuthContext';
 import AppNavigation from './src/navigation';
 import LanguageSheetProvider from './src/context/LanguageSheetProvider';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {enableScreens} from 'react-native-screens';
+enableScreens();
 const App: () => React$Node = () => {
   const [signature, setsignature] = React.useState(null);
   const signatureRef = React.useRef();

@@ -16,27 +16,36 @@ import {
   TEXT_BLACK,
 } from '../../constants/design/colorsAndSizes';
 import {CommentImageIcon} from '../../Svgs';
+import {CustomText} from '../customText';
 
 const CommentInput = ({
   containerStyle,
   inputStyle,
   loadImage,
   onLoadImagesPressed,
+  name,
+  error,
   ...props
 }) => {
   return (
-    <View style={[styles.container, containerStyle]}>
-      <TextInput
-        placeholderTextColor={PLACEHOLDER}
-        style={[styles.input, inputStyle]}
-        {...props}
-      />
-      {loadImage && (
-        <Pressable
-          onPress={onLoadImagesPressed}
-          style={({pressed}) => [{opacity: pressed ? 0.85 : 1}]}>
-          <CommentImageIcon />
-        </Pressable>
+    <View>
+      <View style={[styles.container, containerStyle]}>
+        <TextInput
+          placeholderTextColor={PLACEHOLDER}
+          style={[styles.input, inputStyle]}
+          name={name}
+          {...props}
+        />
+        {loadImage && (
+          <Pressable
+            onPress={onLoadImagesPressed}
+            style={({pressed}) => [{opacity: pressed ? 0.85 : 1}]}>
+            <CommentImageIcon />
+          </Pressable>
+        )}
+      </View>
+      {error?.message && (
+        <CustomText text={error.message} textStyle={{color: 'red'}} />
       )}
     </View>
   );

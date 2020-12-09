@@ -150,3 +150,56 @@ export const LIST_DATA = [
     badgeNumber: 10,
   },
 ];
+
+export const MONTHLY_REPORT_JSON_FORM = [
+  {
+    title: 'pump set panel',
+    subtitles: ['power', 'co2', 'water'],
+    step: 'first',
+  },
+  {title: 'Pressure gauge'},
+  /* {title: 'Pressure gauge'},
+  {
+    title: 'pump set panel',
+    subtitles: ['power', 'co2', 'water'],
+    step: 'first',
+  }, */
+];
+export const MONTHLY_REPORT_DATA = [
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+  {
+    description: 'This place will be to show comment on this picture',
+    image:
+      'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
+    title: 'pump set panel',
+  },
+];

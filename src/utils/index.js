@@ -8,3 +8,6 @@ export const getDatesBetweenDates = (startDate, endDate) => {
   }
   return dates;
 };
+
+export const removeSymbolsFromString = (string) =>
+  string.replace(/[^A-Z0-9]/gi, '');

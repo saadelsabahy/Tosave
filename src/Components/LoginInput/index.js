@@ -18,6 +18,7 @@ const LoginInput = ({
   referance,
   errorText,
   containerStyle = {},
+  name,
   ...props
 }) => {
   const theme = {
@@ -46,6 +47,7 @@ const LoginInput = ({
           underlineColor="transparent"
           enablesReturnKeyAutomatically
           ref={referance}
+          name={name}
           {...props}
         />
       </View>

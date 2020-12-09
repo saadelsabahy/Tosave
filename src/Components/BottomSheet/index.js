@@ -12,7 +12,15 @@ import {
 import {Modalize} from 'react-native-modalize';
 import {BottomSheetContainer} from '../BottomSheetBlock';
 import {LanguageSheet} from '../LanguageBottomSheet';
-const CustomBottomSheet = ({children, snapPoints, referance}) => {
+import {CustomText} from '../customText';
+const CustomBottomSheet = ({
+  children,
+  snapPoints,
+  referance,
+  HeaderComponent,
+  FooterComponent,
+  ...props
+}) => {
   return (
     <Modalize
       ref={referance}
@@ -24,7 +32,10 @@ const CustomBottomSheet = ({children, snapPoints, referance}) => {
       modalHeight={snapPoints + 10 || SCREEN_HEIGHT / 2}
       threshold={20}
       overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}
-      avoidKeyboardLikeIOS>
+      avoidKeyboardLikeIOS
+      FooterComponent={FooterComponent}
+      HeaderComponent={HeaderComponent}
+      {...props}>
       {children}
     </Modalize>
   );
@@ -34,7 +45,7 @@ export {CustomBottomSheet};
 
 const styles = StyleSheet.create({
   modal: {
-    height: null,
+    flex: 1,
     width: SCREEN_WIDTH,
     backgroundColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',

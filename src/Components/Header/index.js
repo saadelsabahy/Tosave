@@ -36,7 +36,7 @@ const Header = ({
           onPress={goBack}
           color={GREEN100}
           size={calcFont(25)}
-          style={{marginStart: 0}}
+          style={{marginStart: 0, paddingHorizontal: 0}}
         />
       ) : (
         <Logo />
@@ -81,11 +81,17 @@ const Header = ({
 };
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'transparent',
+    backgroundColor: WHITE_COLOR,
     elevation: 0,
     alignSelf: 'center',
     width: '100%',
     marginHorizontal: 0,
+    marginStart: 0,
+    //backgroundColor: 'red',
+    paddingStart: 0,
+    paddingHorizontal: 0,
+    //height: SCREEN_HEIGHT / 11,
+    alignItems: 'center',
   },
   title: {
     fontFamily: 'Montserrat',

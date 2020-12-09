@@ -39,6 +39,7 @@ function CustomDrawer({navigation, ...props}) {
 
   //logot
   const onLogoutPressed = () => {
+    navigation.closeDrawer();
     authContext.signOut();
   };
   const onChangeLanguage = () => {

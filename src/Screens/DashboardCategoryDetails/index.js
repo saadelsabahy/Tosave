@@ -36,7 +36,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   };
 
   const onCreatePressed = () => {
-    navigation.navigate('CreateReport');
+    navigation.navigate('CreateReport', {category});
   };
 
   const goBack = () => {
@@ -96,6 +96,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
                   done={selectedIndex == 2}
                   badgeNumber={selectedIndex == 1 && badgeNumber}
                   onPress={() => onItemPressed({date})}
+                  delay={index * 800}
                 />
               );
             }}

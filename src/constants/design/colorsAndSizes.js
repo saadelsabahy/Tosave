@@ -1,5 +1,8 @@
-import {Dimensions} from 'react-native';
-
+import {Dimensions, Pressable} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+export const AnimatablePressable = Animatable.createAnimatableComponent(
+  Pressable,
+);
 export const {height: SCREEN_HEIGHT, width: SCREEN_WIDTH} = Dimensions.get(
   'window',
 );

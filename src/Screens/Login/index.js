@@ -58,7 +58,10 @@ const Login = () => {
       <KeyboardAwareScrollView
         style={[styles.keyboardAwareScrollView]}
         enableOnAndroid
-        extraScrollHeight={150}
+        extraScrollHeight={50}
+        extraHeight={0}
+        stickyHeaderIndices={[1]}
+        keyboardShouldPersistTaps={'always'}
         showsVerticalScrollIndicator={false}>
         <View style={[styles.topContainer]}>
           <Pressable

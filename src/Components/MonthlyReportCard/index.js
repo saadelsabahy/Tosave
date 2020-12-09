@@ -13,7 +13,7 @@ import {
 import {CorrectIcon, DeleteIcon, DeleteIconWithBg, EditIcon} from '../../Svgs';
 import {CustomText} from '../customText';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-// import Animated from 'react-native-reanimated';
+
 const MonthlyReportCard = ({
   badgeNumber,
   done,

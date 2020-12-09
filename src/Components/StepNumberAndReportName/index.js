@@ -8,18 +8,36 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 
-const StepNumber = ({step, containerStyle, textStyle}) => {
+const StepNumberAndReportName = ({
+  step,
+  containerStyle,
+  textStyle,
+  reportNameStyle,
+  stepContainerStyle,
+  reportName,
+}) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      <CustomText text={step} textStyle={[styles.text, textStyle]} />
+      <View style={[styles.stepContainer, stepContainerStyle]}>
+        <CustomText text={step} textStyle={[styles.text, textStyle]} />
+      </View>
+      <CustomText
+        text={reportName}
+        textStyle={[styles.reportName, reportNameStyle]}
+      />
     </View>
   );
 };
 
-export {StepNumber};
+export {StepNumberAndReportName};
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  stepContainer: {
     width: 107,
     height: STEP_NUMBER_HEIGHT,
     borderTopEndRadius: 10,
@@ -27,6 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: BADGE_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
+    marginEnd: 8,
   },
   text: {
     fontSize: FONT_22,
@@ -35,5 +54,11 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0,
     color: WHITE_COLOR,
+  },
+  reportName: {
+    fontSize: FONT_22 - 2,
+    fontWeight: '600',
+    fontStyle: 'normal',
+    color: '#263231',
   },
 });

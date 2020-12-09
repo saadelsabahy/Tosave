@@ -6,6 +6,8 @@ import RootStackScreen from './RootStack';
 import RNBootSplash from 'react-native-bootsplash';
 import {AuthenticationContext} from './AuthContext';
 import {GREEN100, WHITE_COLOR} from '../constants/design/colorsAndSizes';
+import {Login} from '../Screens';
+
 const AppNavigation = () => {
   const {authContext, state} = useContext(AuthenticationContext);
 
@@ -29,7 +31,7 @@ const AppNavigation = () => {
   }
   return (
     <NavigationContainer>
-      {state.userToken ? <Drawer /> : <RootStackScreen />}
+      {state.userToken ? <Drawer /> : <Login />}
     </NavigationContainer>
   );
 };

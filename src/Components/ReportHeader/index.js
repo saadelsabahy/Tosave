@@ -9,9 +9,15 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 
-const ReportHeader = ({number, numberStyle, headerName, headerNameStyle}) => {
+const ReportHeader = ({
+  number,
+  numberStyle,
+  headerName,
+  headerNameStyle,
+  containerStyle,
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       {number && (
         <View style={styles.numberContainer}>
           <CustomText text={number} style={[styles.number, numberStyle]} />
@@ -52,15 +58,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   number: {
-    width: 6,
-    height: 19,
     fontFamily: 'Montserrat',
     fontSize: 15,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'left',
     color: '#ffffff',
   },
   headerTextContainer: {

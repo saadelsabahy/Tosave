@@ -46,6 +46,7 @@ const WelcomeDashboard = ({navigation, route}) => {
                   ItemIcon={icon}
                   itemName={category}
                   onItemPressed={() => onItemPressed({category, icon})}
+                  delay={index * 500}
                 />
               );
             }}

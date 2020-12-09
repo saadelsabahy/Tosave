@@ -60,6 +60,7 @@ const WelcomeScreen = ({navigation}) => {
               return (
                 <WelcomeScreenItem
                   SvgIcon={icon}
+                  delay={index * 800}
                   description={description}
                   title={category}
                   onItemPressed={() =>

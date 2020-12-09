@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, View, Image, Pressable, StyleSheet, FlatList} from 'react-native';
+import {Text, View, Image, Pressable, StyleSheet} from 'react-native';
 import {
+  calcHeight,
+  calcWidth,
   FONT_13,
   FONT_18,
   GREEN50,
@@ -14,7 +16,7 @@ import {
 } from '../../constants/ConstantsVariables';
 import {CameraIcon, DeleteIcon} from '../../Svgs';
 import {CustomText} from '../customText';
-
+import {FlatList} from 'react-native-gesture-handler';
 const ImageItem = ({
   image,
   onPress,
@@ -24,7 +26,11 @@ const ImageItem = ({
 }) => {
   return image ? (
     <Pressable
-      style={[styles.image_view, imageContainerStyle]}
+      style={({pressed}) => [
+        styles.image_view,
+        {opacity: pressed ? 0.7 : 1},
+        imageContainerStyle,
+      ]}
       onPress={() => onPress(image, index)}>
       <Image
         style={styles.image}
@@ -48,7 +54,7 @@ const ImageItem = ({
 };
 
 const ImageGrid = ({
-  images,
+  images = [],
   containerStyle,
   addImagesText,
   onDeleteImagePressed,
@@ -58,9 +64,21 @@ const ImageGrid = ({
   placeholderText,
   onAddImagesPressed,
   onDeleteAllImagesPressed,
+  name,
+  small,
+  emptyContainerStyle,
 }) => {
   return images.length > 0 ? (
-    <View style={[styles.container, containerStyle]}>
+    <View
+      style={[
+        styles.container,
+        {
+          width: small ? calcWidth(183) : SCREEN_WIDTH - 20,
+          height: small ? calcHeight(203) : SCREEN_HEIGHT / 3,
+        },
+        ,
+        containerStyle,
+      ]}>
       <FlatList
         style={[styles.imagesFlatList]}
         columnWrapperStyle={{
@@ -74,13 +92,16 @@ const ImageGrid = ({
         numColumns={IMAGE_GRID_COLUMNS}
         keyExtractor={(item, index) => `${item}${index}`}
         renderItem={({item, index}) => {
+          console.log(item);
           return (
             <ImageItem
               image={item}
               key={`${index} ${item}`}
               onPress={onImagePressed}
               index={index}
-              onDeleteImagePressed={onDeleteImagePressed}
+              onDeleteImagePressed={(index) =>
+                onDeleteImagePressed(index, name)
+              }
               style={[imageContainerStyle]}
             />
           );
@@ -88,25 +109,36 @@ const ImageGrid = ({
       />
       <View style={[styles.buttonsContainer]}>
         <Pressable
-          style={({pressed}) => [styles.button]}
-          onPress={onAddImagesPressed}>
+          style={({pressed}) => [styles.button, {opacity: pressed ? 0.7 : 1}]}
+          onPress={() => onAddImagesPressed(name)}>
           <CameraIcon width={25} height={25} />
           <CustomText text={addImagesText} style={[styles.buttonText]} />
         </Pressable>
         <View style={[styles.divider]} />
         <Pressable
-          style={({pressed}) => [styles.button]}
-          onPress={onDeleteAllImagesPressed}>
+          style={({pressed}) => [styles.button, {opacity: pressed ? 0.7 : 1}]}
+          onPress={() => onDeleteAllImagesPressed(name)}>
           <DeleteIcon width={25} height={25} />
           <CustomText text={deleteImagesText} textStyle={[styles.buttonText]} />
         </Pressable>
       </View>
     </View>
   ) : (
-    <View style={[styles.container]}>
+    <View
+      style={[
+        styles.container,
+        {
+          width: small ? calcWidth(183) : SCREEN_WIDTH - 20,
+          height: small ? calcHeight(203) : SCREEN_HEIGHT / 3,
+        },
+        emptyContainerStyle,
+      ]}>
       <Pressable
-        style={({}) => [styles.emptyPickContainer]}
-        onPress={onAddImagesPressed}>
+        style={({pressed}) => [
+          styles.emptyPickContainer,
+          {opacity: pressed ? 0.7 : 1},
+        ]}
+        onPress={() => onAddImagesPressed(name)}>
         <CameraIcon />
         <CustomText text={placeholderText} textStyle={[styles.placeholder]} />
       </Pressable>
@@ -126,6 +158,8 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: 10,
+    marginEnd: 5,
   },
   emptyPickContainer: {
     justifyContent: 'center',

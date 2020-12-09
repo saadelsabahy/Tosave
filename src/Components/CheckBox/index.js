@@ -1,6 +1,10 @@
 import React, {useState, useCallback} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {calcFont, SCREEN_HEIGHT} from '../../constants/design/colorsAndSizes';
+import {
+  calcFont,
+  SCREEN_HEIGHT,
+  TEXT_BLACK,
+} from '../../constants/design/colorsAndSizes';
 import {CheckedSvg, UnCheckedSvg} from '../../Svgs';
 import {CustomText} from '../customText';
 const CustomCheckBox = ({checked, disabeled, onChange, label, labelStyle}) => {
@@ -12,7 +16,16 @@ const CustomCheckBox = ({checked, disabeled, onChange, label, labelStyle}) => {
       onPress={() => handleToggleCheck(!checked)}>
       {checked ? <CheckedSvg /> : <UnCheckedSvg />}
       {label && (
-        <CustomText text={label} textStyle={[styles.text, labelStyle]} />
+        <CustomText
+          text={label}
+          textStyle={[
+            styles.text,
+            {color: checked ? TEXT_BLACK : '#666'},
+            labelStyle,
+          ]}
+          numberOfLines={2}
+          ellipsizeMode={'tail'}
+        />
       )}
     </Pressable>
   );
@@ -27,6 +40,10 @@ const styles = StyleSheet.create({
     marginEnd: calcFont(10),
   },
   text: {
-    marginStart: 10,
+    marginStart: 5,
+    fontSize: 15,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    color: '#666666',
   },
 });

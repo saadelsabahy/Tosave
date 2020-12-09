@@ -1,5 +1,11 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
 import {
   FONT_13,
@@ -7,9 +13,11 @@ import {
   GREEN100,
   WELCOME_ITEM_HEIGHT,
   WHITE_COLOR,
+  AnimatablePressable,
 } from '../../constants/design/colorsAndSizes';
 import {HsaDashboardIcon, MaintenanceIcon} from '../../Svgs';
 import {CustomText} from '../customText';
+
 const WelcomeScreenItem = ({
   onItemPressed,
   cardTitleStyle,
@@ -17,12 +25,17 @@ const WelcomeScreenItem = ({
   SvgIcon,
   title,
   description,
+  delay,
 }) => {
   const backGroundLine = (height) => {
     return <View style={[styles.backGroundLine, {height}]} key={height} />;
   };
   return (
-    <Pressable style={styles.container} onPress={onItemPressed}>
+    <AnimatablePressable
+      style={styles.container}
+      onPress={onItemPressed}
+      animation="fadeInUp"
+      delay={delay}>
       <View style={[styles.backGroundLineContainer]}>
         <View style={{flexDirection: 'row'}}>
           {[50, 33, 40, 17].map((item, index) => backGroundLine(item))}
@@ -45,7 +58,7 @@ const WelcomeScreenItem = ({
         />
       </Card.Content>
       {SvgIcon && <View style={styles.innerContent}>{SvgIcon}</View>}
-    </Pressable>
+    </AnimatablePressable>
   );
 };
 

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {
+  AnimatablePressable,
   calcHeight,
   FONT_16,
   FONT_22,
@@ -17,9 +18,18 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
 
-const WelcomeDashboardListItem = ({onItemPressed, ItemIcon, itemName}) => {
+const WelcomeDashboardListItem = ({
+  onItemPressed,
+  ItemIcon,
+  itemName,
+  delay,
+}) => {
   return (
-    <Pressable style={[styles.card]} onPress={onItemPressed}>
+    <AnimatablePressable
+      animation="zoomIn"
+      delay={delay}
+      style={[styles.card]}
+      onPress={onItemPressed}>
       {ItemIcon && (
         <View style={styles.imageBackground}>
           {React.cloneElement(ItemIcon, {width: '100%', height: '100%'})}
@@ -36,7 +46,7 @@ const WelcomeDashboardListItem = ({onItemPressed, ItemIcon, itemName}) => {
           onPress={onItemPressed}
         />
       </View>
-    </Pressable>
+    </AnimatablePressable>
   );
 };
 

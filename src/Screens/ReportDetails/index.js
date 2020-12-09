@@ -2,24 +2,22 @@ import React, {useRef} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {
   Block,
-  CustomButton,
-  CustomSignature,
-  CustomText,
   DialogueModal,
-  DurationModal,
   Header,
-  RepliesButton,
-  ReportHeader,
-  SignatureModal,
-  UserSection,
+  ReportSubHeader,
+  StepNumberAndReportName,
 } from '../../Components';
 import {
+  FONT_18,
+  FONT_22,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
+  WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
+import {MonthlyAndRisk} from './MonthlyAndRisk';
 const ReportDetails = ({navigation, route}) => {
   const {category, date} = route.params;
-  const durationModalRef = useRef(null);
+  const repliesModalRef = useRef(null);
   const [showSignatureModal, setshowSignatureModal] = React.useState(false);
   const [signature, setsignature] = React.useState(null);
 
@@ -33,29 +31,7 @@ const ReportDetails = ({navigation, route}) => {
   };
   return (
     <View style={[styles.container]}>
-      <Block>
-        <Header back />
-
-        <View style={[styles.textContainer]}>
-          <CustomText
-            text={`${category} ${category.includes('report') ? '' : 'report'}`}
-          />
-          <CustomText text={`${date}`} />
-        </View>
-        <CustomButton
-          onPress={() => {
-            durationModalRef.current.open();
-          }}
-        />
-        <RepliesButton />
-      </Block>
-      <DialogueModal reference={durationModalRef} />
-      {/*  <SignatureModal
-        visible={showSignatureModal}
-        hideSignatureModal={hideSignature}
-        reference={durationModalRef}
-        onConfirmSignature={onConfirmSignature}
-      /> */}
+      <MonthlyAndRisk navigation={navigation} route={route} />
     </View>
   );
 };
@@ -67,11 +43,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
     alignItems: 'center',
-  },
-  textContainer: {
-    width: '100%',
-    height: SCREEN_HEIGHT / 13,
-    justifyContent: 'space-between',
-    backgroundColor: '#ddd',
+    backgroundColor: WHITE_COLOR,
   },
 });
