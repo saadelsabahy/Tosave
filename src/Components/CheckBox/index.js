@@ -23,8 +23,6 @@ const CustomCheckBox = ({checked, disabeled, onChange, label, labelStyle}) => {
             {color: checked ? TEXT_BLACK : '#666'},
             labelStyle,
           ]}
-          numberOfLines={2}
-          ellipsizeMode={'tail'}
         />
       )}
     </Pressable>

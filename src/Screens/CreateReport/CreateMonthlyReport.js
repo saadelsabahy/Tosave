@@ -4,6 +4,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   Block,
   CustomButton,
+  CustomCheckBox,
   CustomText,
   DamageType,
   Header,
@@ -25,6 +26,7 @@ import {MONTHLY_REPORT_JSON_FORM} from '../../constants/design/MockData';
 import {removeSymbolsFromString} from '../../utils';
 import {useForm, Controller} from 'react-hook-form';
 import validation from '../../utils/validation';
+import {Checkbox} from 'react-native-paper';
 const CreateMonthlyReport = ({
   reportName,
   screenName,
@@ -124,7 +126,12 @@ const CreateMonthlyReport = ({
               return (
                 <Block containerStyle={{marginTop: 20, height: 'auto'}}>
                   <ReportHeader number={index + 1} headerName={title} />
-
+                  {screenName.includes('risks') && (
+                    <View style={styles.checkContainer}>
+                      <CustomCheckBox label="normal" />
+                      <CustomCheckBox label="non-normal" />
+                    </View>
+                  )}
                   {subtitles?.length ? (
                     <FlatList
                       data={subtitles}
@@ -230,5 +237,12 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  checkContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 8,
   },
 });

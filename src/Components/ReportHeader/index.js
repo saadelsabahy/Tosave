@@ -26,7 +26,7 @@ const ReportHeader = ({
       <View style={styles.headerTextContainer}>
         <CustomText
           text={headerName}
-          style={[
+          textStyle={[
             styles.headerText,
             {marginStart: number ? 0 : 10},
             headerNameStyle,
@@ -41,8 +41,8 @@ export {ReportHeader};
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: SCREEN_WIDTH - 20,
-    height: REPORT_HEADER_HEIGHT,
     borderRadius: 10,
     backgroundColor: GREEN50,
     flexDirection: 'row',

@@ -36,3 +36,4 @@ export * from './ScreenNameAndDate';
 export * from './ReportSubHeader';
 export * from './RepliesModal';
 export * from './wheelDatePicker';
+export * from './FilterModal';

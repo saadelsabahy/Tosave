@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {
   Block,
@@ -6,6 +6,8 @@ import {
   CustomCalendarStripe,
   CustomDropdown,
   CustomText,
+  DialogueModal,
+  FilterModal,
   Header,
   MonthlyReportCard,
   Segment,
@@ -21,9 +23,11 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {LIST_DATA} from '../../constants/design/MockData';
 import {CATEGORY_INCLUDES_PRANCHES} from '../../constants/ConstantsVariables';
+import {DurationIcon, FilterIcon} from '../../Svgs';
 const DashboardCategoryDetails = ({navigation, route}) => {
   const {category, icon} = route.params;
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const filterRef = useRef();
   const onNotificationsPressed = () => {
     navigation.navigate('Notifications');
   };
@@ -45,6 +49,9 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   const onItemPressed = ({date}) => {
     navigation.navigate('ReportDetails', {category, date});
   };
+  const onFilterIconPressed = () => {
+    filterRef.current.open();
+  };
   return (
     <View style={[styles.container]}>
       <Block>
@@ -53,15 +60,24 @@ const DashboardCategoryDetails = ({navigation, route}) => {
           onMenuPressed={onPhotoPressed}
           onNotificationsPressed={onNotificationsPressed}
           goBack={goBack}
+          notificationsNumber={100}
         />
 
         <View style={[styles.pageTitleContainer]}>
-          {React.cloneElement(icon, {
-            width: calcWidth(30),
-            height: calcHeight(30),
-            fill: GREEN100,
-          })}
-          <CustomText text={category} textStyle={[styles.category]} />
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            {React.cloneElement(icon, {
+              width: calcWidth(30),
+              height: calcHeight(30),
+              fill: GREEN100,
+            })}
+            <CustomText text={category} textStyle={[styles.category]} />
+          </View>
+
+          {category.toLowerCase() == 'maintenance' ? (
+            <FilterIcon onPress={onFilterIconPressed} />
+          ) : (
+            <DurationIcon />
+          )}
         </View>
 
         <Segment
@@ -96,7 +112,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
                   done={selectedIndex == 2}
                   badgeNumber={selectedIndex == 1 && badgeNumber}
                   onPress={() => onItemPressed({date})}
-                  delay={index * 800}
+                  delay={index * 500}
                 />
               );
             }}
@@ -104,6 +120,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
         </View>
       </Block>
       <CreateMonthlyReportIcon onPress={onCreatePressed} />
+      <FilterModal reference={filterRef} />
     </View>
   );
 };
@@ -122,6 +139,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT / 13,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   category: {
     fontSize: FONT_25,

@@ -106,16 +106,17 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     // width: 105,
-    flex: 1,
+    flex: 0.6,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
+    // backgroundColor: '#ddd',
   },
   badge: {
     // position: 'absolute',
     zIndex: 10,
     /*
-    top: 17, */ start: -25,
+    top: 17, */ start: -20,
     backgroundColor: BADGE_COLOR,
     borderColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',
@@ -138,6 +139,8 @@ const styles = StyleSheet.create({
   notificationIconContair: {
     flex: 1,
     alignItems: 'center',
+    width: SCREEN_WIDTH / 10,
+    // backgroundColor: 'red',
   },
 });
 

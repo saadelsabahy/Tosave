@@ -13,6 +13,7 @@ import './src/localization';
 import AuthContext from './src/navigation/AuthContext';
 import AppNavigation from './src/navigation';
 import LanguageSheetProvider from './src/context/LanguageSheetProvider';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {enableScreens} from 'react-native-screens';
 enableScreens();
 const App: () => React$Node = () => {
@@ -23,10 +24,7 @@ const App: () => React$Node = () => {
 
     return () => {};
   }, []);
-  const handleOk = (signature) => {
-    console.log({signature});
-    setsignature(signature);
-  };
+
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#fff'} />
@@ -49,12 +47,13 @@ const App: () => React$Node = () => {
             }}>
             <CustomText text={'save'} />
           </TouchableOpacity> */}
-
-        <AuthContext>
-          <LanguageSheetProvider>
-            <AppNavigation />
-          </LanguageSheetProvider>
-        </AuthContext>
+        <PaperProvider>
+          <AuthContext>
+            <LanguageSheetProvider>
+              <AppNavigation />
+            </LanguageSheetProvider>
+          </AuthContext>
+        </PaperProvider>
       </SafeAreaView>
     </>
   );

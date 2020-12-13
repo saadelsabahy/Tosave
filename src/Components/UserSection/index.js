@@ -14,9 +14,10 @@ const UserSection = ({
   checkBox,
   checkValue,
   onCheckChange,
+  containerStyle,
 }) => {
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, containerStyle]}>
       <View style={[styles.startContainer]}>
         <EmployeeIcon />
         <View style={[styles.infoContainer]}>
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#ddd',
+    //backgroundColor: '#ddd',
     alignItems: 'center',
   },
   startContainer: {

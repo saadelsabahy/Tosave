@@ -9,8 +9,15 @@ import {
   FONT_16,
   BADGE_COLOR,
   calcHeight,
+  AnimatablePressable,
 } from '../../constants/design/colorsAndSizes';
-import {CorrectIcon, DeleteIcon, DeleteIconWithBg, EditIcon} from '../../Svgs';
+import {
+  CanceledIcon,
+  CorrectIcon,
+  DeleteIcon,
+  DeleteIconWithBg,
+  EditIcon,
+} from '../../Svgs';
 import {CustomText} from '../customText';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
@@ -23,6 +30,8 @@ const MonthlyReportCard = ({
   onPress,
   onEditPressed,
   onDeletePressed,
+  cancelled,
+  delay,
 }) => {
   const renderEndAction = ({progress, dragx}) => {
     const opacity = dragx.interpolate({
@@ -55,7 +64,11 @@ const MonthlyReportCard = ({
           dragx,
         })
       }>
-      <Pressable style={styles.container} onPress={onPress}>
+      <AnimatablePressable
+        animation="zoomInDown"
+        delay={delay}
+        style={styles.container}
+        onPress={onPress}>
         <View style={styles.startContainer}>
           <CustomText text={title} textStyle={[styles.cardTitle]} />
           <CustomText text={description} textStyle={[styles.reportName]} />
@@ -75,8 +88,13 @@ const MonthlyReportCard = ({
               <CorrectIcon />
             </View>
           )}
+          {cancelled && (
+            <View style={styles.doneIconeContainer}>
+              <CanceledIcon />
+            </View>
+          )}
         </View>
-      </Pressable>
+      </AnimatablePressable>
     </Swipeable>
   );
 };

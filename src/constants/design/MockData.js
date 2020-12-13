@@ -20,7 +20,7 @@ export const WELCOME_DATA = [
     id: 1,
   },
   {
-    category: 'Maintainance',
+    category: 'maintenance',
     description: 'Health and safety Reports',
     icon: <MaintenanceIcon />,
     id: 2,
@@ -202,4 +202,11 @@ export const MONTHLY_REPORT_DATA = [
       'https://www.fireapparatusmagazine.com/wp-content/uploads/content/dam/fa/article/2019/1/FA013119-Naylis.jpg',
     title: 'pump set panel',
   },
+];
+
+export const USERS = [
+  {name: 'saad karam', id: 154},
+  {name: 'ahmed karam', id: 155},
+  {name: 'reda awad', id: 156},
+  {name: 'amr mostafa', id: 157},
 ];

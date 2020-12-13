@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {
   FONT_16,
+  FONT_25,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from '../../constants/design/colorsAndSizes';
@@ -86,5 +87,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     maxHeight: SCREEN_HEIGHT / 7,
     //backgroundColor: '#842',
+  },
+  headerText: {
+    fontSize: FONT_25,
+    fontWeight: 'bold',
+    marginStart: 8,
   },
 });

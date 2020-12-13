@@ -19,19 +19,18 @@ export {DamageType};
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH / 5,
-    height: REPORT_HEADER_HEIGHT,
+    maxWidth: SCREEN_WIDTH / 4,
+    //height: REPORT_HEADER_HEIGHT,
     borderRadius: 10,
     backgroundColor: '#E9EAEA',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
   },
   text: {
     fontSize: FONT_13 + 1,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 18,
-    letterSpacing: 0,
     color: '#263231',
   },
 });

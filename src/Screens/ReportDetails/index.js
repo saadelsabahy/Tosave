@@ -14,9 +14,13 @@ import {
   SCREEN_WIDTH,
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
+import CreateMaintenenceReport from '../CreateReport/CreateMaintenenceReport';
+import MaintenenceReport from './MaintenenceReport';
 import {MonthlyAndRisk} from './MonthlyAndRisk';
+import TrainingReport from './TrainingReport';
 const ReportDetails = ({navigation, route}) => {
   const {category, date} = route.params;
+  console.log(category);
   const repliesModalRef = useRef(null);
   const [showSignatureModal, setshowSignatureModal] = React.useState(false);
   const [signature, setsignature] = React.useState(null);
@@ -31,7 +35,16 @@ const ReportDetails = ({navigation, route}) => {
   };
   return (
     <View style={[styles.container]}>
-      <MonthlyAndRisk navigation={navigation} route={route} />
+      {['risks', 'monthly reports'].includes(category.toLowerCase()) && (
+        <MonthlyAndRisk navigation={navigation} route={route} />
+      )}
+      {['training', 'first aid', 'evacuation'].includes(
+        category.toLowerCase(),
+      ) && <TrainingReport screenName={`${category} report`} />}
+
+      {['maintenance'].includes(category.toLowerCase()) && (
+        <MaintenenceReport category={`${category} report`} />
+      )}
     </View>
   );
 };

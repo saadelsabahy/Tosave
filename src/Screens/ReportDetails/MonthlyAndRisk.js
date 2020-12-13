@@ -43,7 +43,7 @@ const MonthlyAndRisk = ({navigation, route}) => {
         onRepliesButtonPressed={() => repliesModalRef.current.open()}
         repliesNumber={10}
       />
-      <StepNumberAndReportName />
+
       <Block containerStyle={{height: 'auto', marginVertical: 10}}>
         <FlatList
           data={MONTHLY_REPORT_DATA}
@@ -54,18 +54,21 @@ const MonthlyAndRisk = ({navigation, route}) => {
           }}
           renderItem={({item: {title, description, image}, index}) => {
             return (
-              <View style={{marginVertical: 5}}>
-                <ReportHeader
-                  containerStyle={{marginVertical: 5}}
-                  number={index + 1}
-                  headerName={title}
-                />
-                <CommentImadeAndDescriptionCard
-                  commentImage={image}
-                  description={description}
-                  containerStyle={{width: '100%'}}
-                />
-              </View>
+              <>
+                <StepNumberAndReportName />
+                <View style={{marginVertical: 5}}>
+                  <ReportHeader
+                    containerStyle={{marginVertical: 5}}
+                    number={index + 1}
+                    headerName={title}
+                  />
+                  <CommentImadeAndDescriptionCard
+                    commentImage={image}
+                    description={description}
+                    containerStyle={{width: '100%'}}
+                  />
+                </View>
+              </>
             );
           }}
         />

@@ -20,10 +20,12 @@ const ScreenNameAndDate = ({
         text={screenName || 'screen name'}
         textStyle={[styles.name, nameStyle]}
       />
-      <CustomText
-        text={date || 'screen date'}
-        textStyle={[styles.date, dateStyle]}
-      />
+      {date && (
+        <CustomText
+          text={date || 'screen date'}
+          textStyle={[styles.date, dateStyle]}
+        />
+      )}
     </View>
   );
 };
@@ -32,7 +34,7 @@ export default ScreenNameAndDate;
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '95%',
     height: SCREEN_HEIGHT / 10,
     backgroundColor: 'transparent',
     alignSelf: 'center',

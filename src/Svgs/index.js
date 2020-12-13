@@ -34,3 +34,8 @@ export * from './ResetIcon';
 export * from './DurationIcon';
 export * from './FilterIcon';
 export * from './EmployeeIcon';
+export * from './CanceledIcon';
+export * from './ClockIcon';
+export * from './SignatureIcon';
+export * from './PlusIcon';
+export * from './ReviewedIcon';
