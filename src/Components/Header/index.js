@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_13,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 18,
     letterSpacing: 0,
     textAlign: I18nManager.isRTL ? 'right' : 'left',
     color: GREEN100,

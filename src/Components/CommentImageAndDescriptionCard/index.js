@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_16 - 1,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 19,
-    letterSpacing: 0,
     color: '#ffffff',
   },
 });

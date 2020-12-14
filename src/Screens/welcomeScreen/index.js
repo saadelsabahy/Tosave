@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_25,
     fontWeight: 'bold',
     fontStyle: 'normal',
-    lineHeight: 30,
     color: '#263231',
   },
 });

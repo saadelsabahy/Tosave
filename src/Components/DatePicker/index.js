@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 19,
     letterSpacing: 0,
   },
   controllsContainer: {
@@ -101,7 +100,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
     fontStyle: 'normal',
-    lineHeight: 16,
     letterSpacing: 0,
     color: '#aaaaaa',
     fontFamily: 'Montserrat',
