@@ -21,13 +21,13 @@ const DrawerStack = ({navigation, style, ...props}) => {
           headerShown: false,
         }}>
         <Stack.Screen name="WelcomeStack" component={WelcomeStackNavigation} />
-        <Stack.Screen name="CreateReport" component={CreateReport} />
       </Stack.Navigator>
     </Animated.View>
   );
 };
 
 const MainDrawer = createDrawerNavigator();
+
 const Drawer = () => {
   const [progressing, setprogressing] = useState(new Animated.Value(0));
   const scale = Animated.interpolate(progressing, {
