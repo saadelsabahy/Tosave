@@ -15,6 +15,7 @@ import AppNavigation from './src/navigation';
 import LanguageSheetProvider from './src/context/LanguageSheetProvider';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {enableScreens} from 'react-native-screens';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 enableScreens();
 const App: () => React$Node = () => {
   const [signature, setsignature] = React.useState(null);
@@ -29,24 +30,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#fff'} />
 
-      <SafeAreaView style={styles.saveArea}>
-        {/* <MonthlyReportCard
-            onEditPressed={() => alert('edit')}
-            onDeletePressed={() => alert('delete')}
-          />
-          {signature && (
-            <Image
-              source={{uri: signature}}
-              style={{width: 100, height: 100}}
-            />
-          )}
-          <CustomSignature reference={signatureRef} handleOk={handleOk} />
-          <TouchableOpacity
-            onPress={() => {
-              signatureRef.current.readSignature();
-            }}>
-            <CustomText text={'save'} />
-          </TouchableOpacity> */}
+      <SafeAreaProvider style={styles.saveArea}>
         <PaperProvider>
           <AuthContext>
             <LanguageSheetProvider>
@@ -54,7 +38,7 @@ const App: () => React$Node = () => {
             </LanguageSheetProvider>
           </AuthContext>
         </PaperProvider>
-      </SafeAreaView>
+      </SafeAreaProvider>
     </>
   );
 };

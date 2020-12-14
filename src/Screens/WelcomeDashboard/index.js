@@ -10,8 +10,9 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {DASHBOARD_DATA} from '../../constants/design/MockData';
-
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const WelcomeDashboard = ({navigation, route}) => {
+  const insets = useSafeAreaInsets();
   const {category, description} = route.params;
   const goBack = () => {
     navigation.goBack();
@@ -21,7 +22,8 @@ const WelcomeDashboard = ({navigation, route}) => {
     navigation.navigate('DashboardCategory', {category, icon});
   };
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, {paddingBottom: Math.max(insets.bottom, 16)}]}>
       {/* <Button onPress={() => navigation.goBack()}>go to back</Button> */}
       <View style={[styles.contentContainer]}>
         <Header back goBack={goBack} notificationsNumber={10} />

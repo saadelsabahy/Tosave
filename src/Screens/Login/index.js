@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
   topContainer: {
     width: '100%',
     height: SCREEN_HEIGHT / 2,
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
+    //paddingBottom: 20,
   },
   worldIconContainer: {
     width: calcWidth(45),
@@ -145,8 +146,7 @@ const styles = StyleSheet.create({
   bottomContainer: {
     width: '100%',
     height: SCREEN_HEIGHT / 2,
-    justifyContent: 'space-evenly',
-    paddingTop: calcFont(30),
+    justifyContent: 'space-around',
   },
   text: {
     fontSize: FONT_37,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   inputsAndButtonContainer: {
-    flex: 0.9,
+    flex: 0.85,
     width: '100%',
     //  height:SCREEN_HEIGHT*.9,
     justifyContent: 'space-evenly',

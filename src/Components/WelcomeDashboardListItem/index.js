@@ -9,10 +9,13 @@ import {
 import {IconButton} from 'react-native-paper';
 import {
   AnimatablePressable,
+  calcFont,
   calcHeight,
+  calcWidth,
   FONT_16,
   FONT_22,
   GREEN100,
+  PLACEHOLDER,
   SCREEN_WIDTH,
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH / 2 - 20,
     margin: 5,
     height: calcHeight(200),
-    borderRadius: 18,
+    borderRadius: calcFont(18),
     backgroundColor: WHITE_COLOR,
     shadowColor: 'rgba(0, 0, 0, 0.16)',
     shadowOffset: {
@@ -67,6 +70,8 @@ const styles = StyleSheet.create({
     shadowRadius: 11,
     shadowOpacity: 1,
     elevation: 2,
+    borderWidth: 0.2,
+    borderColor: PLACEHOLDER,
     overflow: 'hidden',
   },
   imageBackground: {

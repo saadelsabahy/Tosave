@@ -8,12 +8,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import CustomDrawer from './CustomDrawer';
 import {WHITE_COLOR} from '../../constants/design/colorsAndSizes';
 import WelcomeStackNavigation from '../WelcomeScreenStack';
-// const AnimatedView = Animated.createAnimatedComponent(View);
+import {SafeAreaView} from 'react-native-safe-area-context';
+const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 const Stack = createStackNavigator();
 
-function DrawerStack({navigation, style}) {
+const DrawerStack = ({navigation, style, ...props}) => {
   return (
-    <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
+    <Animated.View style={[styles.stack, style]}>
       <Stack.Navigator
         initialRouteName={'WelcomeStack'}
         screenOptions={{
@@ -24,40 +25,31 @@ function DrawerStack({navigation, style}) {
       </Stack.Navigator>
     </Animated.View>
   );
-}
+};
 
 const MainDrawer = createDrawerNavigator();
 const Drawer = () => {
   const [progressing, setprogressing] = useState(new Animated.Value(0));
   const scale = Animated.interpolate(progressing, {
     inputRange: [0, 1],
-    outputRange: [1, 0.92],
+    outputRange: [1, 0.8],
   });
 
   const borderRadius = Animated.interpolate(progressing, {
     inputRange: [0, 1],
-    outputRange: [0, 50],
+    outputRange: [0, 20],
   });
   const screenStyle = {borderRadius, transform: [{scale}]};
-  const updatProgressing = (progress) => {
-    setprogressing(progress);
-  };
+
   return (
     <MainDrawer.Navigator
-      initialRouteName="DrawerStack"
+      initialRouteName="WelcomeStack"
       drawerType="slide"
       overlayColor="transparent"
-      contentContainerStyle={{flex: 1}}
-      drawerContentOptions={{
-        activeBackgroundColor: WHITE_COLOR,
-        activeTintColor: WHITE_COLOR,
-        inactiveTintColor: WHITE_COLOR,
-      }}
       drawerStyle={{width: '60%'}}
       sceneContainerStyle={{backgroundColor: 'transparent'}}
       drawerContent={(props) => {
-        updatProgressing(props.progress);
-        /* setprogressing(props.progress); */
+        setprogressing(props.progress);
         return <CustomDrawer {...props} />;
       }}>
       <MainDrawer.Screen name="DrawerStack">
@@ -71,14 +63,14 @@ const Drawer = () => {
 const styles = StyleSheet.create({
   stack: {
     flex: 1,
-    shadowColor: WHITE_COLOR,
+    shadowColor: 'rgba(0,0,0,.5)',
     shadowOffset: {
       width: 0,
-      height: 8,
+      height: 0,
     },
     shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 10,
+    shadowRadius: 10,
+    elevation: 5,
   },
 });
 export default Drawer;

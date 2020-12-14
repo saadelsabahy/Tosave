@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     borderTopStartRadius: calcFont(40),
     borderTopEndRadius: calcFont(40),
+    borderBottomEndRadius: 0,
+    borderBottomStartRadius: 0,
     justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: '#ddd',
