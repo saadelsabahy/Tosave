@@ -15,6 +15,8 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import CreateMaintenenceReport from '../CreateReport/CreateMaintenenceReport';
+import {HelpDeskReport} from './HelpDeskReport';
+import IncidentsReport from './IncidentsReport';
 import MaintenenceReport from './MaintenenceReport';
 import {MonthlyAndRisk} from './MonthlyAndRisk';
 import TrainingReport from './TrainingReport';
@@ -44,6 +46,12 @@ const ReportDetails = ({navigation, route}) => {
 
       {['maintenance'].includes(category.toLowerCase()) && (
         <MaintenenceReport category={`${category} report`} />
+      )}
+      {['incidents'].includes(category.toLowerCase()) && (
+        <IncidentsReport category={`${category} report`} />
+      )}
+      {['help desk'].includes(category.toLowerCase()) && (
+        <HelpDeskReport category={`${category} report`} />
       )}
     </View>
   );

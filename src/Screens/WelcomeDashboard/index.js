@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#263231',
+    textTransform: 'uppercase',
   },
   description: {
     fontSize: FONT_18,

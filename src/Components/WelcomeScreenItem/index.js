@@ -104,20 +104,14 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: FONT_25,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    lineHeight: 30,
-    letterSpacing: 0,
     color: WHITE_COLOR,
-    marginBottom: 5,
+    textTransform: 'uppercase',
   },
   cardParagraph: {
     width: 130,
     height: 32,
     fontSize: FONT_13,
     fontWeight: '500',
-    fontStyle: 'normal',
-    lineHeight: 16,
-    letterSpacing: 0,
     color: WHITE_COLOR,
   },
 });

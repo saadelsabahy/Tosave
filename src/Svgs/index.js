@@ -39,3 +39,4 @@ export * from './ClockIcon';
 export * from './SignatureIcon';
 export * from './PlusIcon';
 export * from './ReviewedIcon';
+export * from './BackgroundRects';

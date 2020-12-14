@@ -27,7 +27,7 @@ import {
   WHITE_COLOR,
   EYE_ICON_COLOR,
 } from '../../constants/design/colorsAndSizes';
-import {LoginPhoto, LoginWorldIcon, Logo} from '../../Svgs';
+import {BackgroundRects, LoginPhoto, LoginWorldIcon, Logo} from '../../Svgs';
 import {useTranslation} from 'react-i18next';
 import {TextInput} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -55,13 +55,16 @@ const Login = () => {
   };
   return (
     <View style={[styles.container]}>
+      <View style={styles.backgroundRectsContainer}>
+        <BackgroundRects />
+      </View>
       <KeyboardAwareScrollView
         style={[styles.keyboardAwareScrollView]}
         enableOnAndroid
         extraScrollHeight={50}
         extraHeight={0}
         stickyHeaderIndices={[1]}
-        keyboardShouldPersistTaps={'always'}
+        keyboardShouldPersistTaps={'handled'}
         showsVerticalScrollIndicator={false}>
         <View style={[styles.topContainer]}>
           <Pressable
@@ -89,14 +92,9 @@ const Login = () => {
               right={
                 <TextInput.Icon
                   onPress={toggleSecureInput}
-                  name={() => (
-                    <Ionicons
-                      name={secureInput ? 'eye-outline' : 'eye-off-outline'}
-                      size={calcFont(20)}
-                      color={EYE_ICON_COLOR}
-                      onPress={toggleSecureInput}
-                    />
-                  )}
+                  size={calcFont(20)}
+                  color={EYE_ICON_COLOR}
+                  name={secureInput ? 'eye-outline' : 'eye-off-outline'}
                 />
               }
             />
@@ -121,6 +119,12 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE_COLOR,
     alignItems: 'center',
   },
+  backgroundRectsContainer: {
+    position: 'absolute',
+    end: '-10%',
+    height: SCREEN_HEIGHT / 3.5,
+    overflow: 'hidden',
+  },
   keyboardAwareScrollView: {
     width: SCREEN_WIDTH - 20,
     height: SCREEN_HEIGHT,
@@ -142,14 +146,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: SCREEN_HEIGHT / 2,
     justifyContent: 'space-evenly',
+    paddingTop: calcFont(30),
   },
   text: {
-    height: calcHeight(45),
     fontSize: FONT_37,
     fontWeight: 'bold',
-    lineHeight: calcHeight(45),
-    letterSpacing: 0,
     color: '#263231',
+    textTransform: 'uppercase',
   },
   inputsAndButtonContainer: {
     flex: 0.9,
