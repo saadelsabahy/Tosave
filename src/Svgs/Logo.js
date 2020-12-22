@@ -24,7 +24,8 @@ function Logo(props) {
           transform="translate(27.712 27)"
           fill="#11a99d"
           fontSize={25}
-          fontFamily="SegoeUI, Segoe UI">
+          /* fontFamily="SegoeUI, Segoe UI" */
+        >
           <TSpan x={0} y={0}>
             {'SAFE'}
           </TSpan>

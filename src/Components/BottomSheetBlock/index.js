@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import {
   calcFont,
   SCREEN_WIDTH,
@@ -27,16 +27,17 @@ const styles = StyleSheet.create({
     height: '100%',
     width: SCREEN_WIDTH,
     backgroundColor: WHITE_COLOR,
-    shadowColor: 'rgba(0, 0, 0, 0.16)',
+    /* shadowColor: 'rgba(0, 0, 0, 0.16)',
     shadowOffset: {
       width: 0,
       height: 0,
     },
     shadowRadius: 11,
-    shadowOpacity: 1,
+    shadowOpacity: 1, */
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: calcFont(40),
+    borderTopEndRadius: calcFont(40),
+    borderTopStartRadius: calcFont(40),
   },
   contentContainer: {height: '90%', width: '90%'},
 });

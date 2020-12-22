@@ -24,8 +24,7 @@ const Segment = ({values = [], selectedIndex, onChange}) => {
         backgroundColor={GREEN50}
         enabled
         style={[styles.segment]}
-        momentary
-        activeFontStyle={{color: WHITE_COLOR}}
+        activeFontStyle={styles.selectedFont}
       />
     </View>
   );
@@ -43,10 +42,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontSize: FONT_16,
     fontWeight: '600',
-    fontStyle: 'normal',
-    lineHeight: 19,
-    letterSpacing: 0,
     color: GREEN100,
     textTransform: 'capitalize',
+  },
+  selectedFont: {
+    fontFamily: 'Montserrat',
+    fontSize: FONT_16,
+    color: WHITE_COLOR,
   },
 });

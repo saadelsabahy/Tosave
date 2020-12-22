@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Block,
   CustomButton,
@@ -20,12 +21,15 @@ const EditProfile = ({navigation}) => {
     navigation.goBack();
   };
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       <KeyboardAwareScrollView
         style={[styles.KeyboardAwareScrollView]}
         contentContainerStyle={{alignItems: 'center'}}
-        enableOnAndroid>
-        <Block>
+        enableOnAndroid
+        extraScrollHeight={0}
+        extraHeight={0}
+        stickyHeaderIndices={[0]}>
+        <View style={{width: '100%'}}>
           <Header
             back
             noPhoto
@@ -35,7 +39,8 @@ const EditProfile = ({navigation}) => {
             }
             goBack={goBack}
           />
-
+        </View>
+        <Block>
           <View style={[styles.screenNameContainer]}>
             <CustomText text={'edit my info'} textStyle={[styles.screenName]} />
           </View>
@@ -58,7 +63,7 @@ const EditProfile = ({navigation}) => {
           </View>
         </Block>
       </KeyboardAwareScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

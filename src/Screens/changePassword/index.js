@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Block,
   CustomButton,
@@ -22,13 +23,13 @@ const ChangePassword = ({navigation}) => {
     navigation.goBack();
   };
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       <KeyboardAwareScrollView
         style={[styles.KeyboardAwareScrollView]}
         contentContainerStyle={{alignItems: 'center'}}
         enableOnAndroid
-        extraScrollHeight={INPUTS_AND_BUTTONS_HEIGHT}>
-        <Block>
+        stickyHeaderIndices={[0]}>
+        <View style={{width: '100%'}}>
           <Header
             back
             noPhoto
@@ -38,7 +39,8 @@ const ChangePassword = ({navigation}) => {
             }
             goBack={goBack}
           />
-
+        </View>
+        <Block>
           <View style={[styles.screenNameContainer]}>
             <CustomText
               text={'change password'}
@@ -48,18 +50,7 @@ const ChangePassword = ({navigation}) => {
 
           <View style={[styles.photoContainer]}>
             <ChangePasswordLock />
-            <View
-              style={{
-                position: 'absolute',
-                top: 0,
-                start: -40,
-                opacity: 0.07,
-                //backgroundColor: 'red',
-                height: '95%',
-                width: '70%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+            <View style={styles.absoluteLockContainer}>
               <ChangePasswordLock width={'100%'} height={'100%'} />
             </View>
           </View>
@@ -77,7 +68,7 @@ const ChangePassword = ({navigation}) => {
           </View>
         </Block>
       </KeyboardAwareScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -85,13 +76,11 @@ export {ChangePassword};
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
+    flex: 1,
     backgroundColor: WHITE_COLOR,
   },
   KeyboardAwareScrollView: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
+    flex: 1,
   },
   screenNameContainer: {
     width: '95%',
@@ -110,13 +99,26 @@ const styles = StyleSheet.create({
     color: '#263231',
   },
   photoContainer: {
-    width: '100%',
-    height: SCREEN_HEIGHT / 2.5,
+    width: '60%',
+    height: SCREEN_HEIGHT * 0.35,
     justifyContent: 'center',
-    //backgroundColor: '#ddd',
+    alignItems: 'center',
+    start: -20,
   },
   inputsContainer: {
+    height: SCREEN_HEIGHT * 0.65,
     width: '100%',
-    height: SCREEN_HEIGHT / 2,
+    //justifyContent: 'center',
+  },
+  absoluteLockContainer: {
+    position: 'absolute',
+    top: 0,
+    start: 0,
+    opacity: 0.07,
+    //backgroundColor: 'red',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
