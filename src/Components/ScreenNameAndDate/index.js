@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT / 10,
     backgroundColor: 'transparent',
     alignSelf: 'center',
+    alignItems: 'flex-start',
   },
   name: {
     fontSize: FONT_25,

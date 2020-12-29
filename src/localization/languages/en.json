@@ -1,21 +1,46 @@
 {
   "login": {
     "login": "log in",
-    "username": "username",
-    "password": "password"
+    "userName": "username",
+    "password": "password",
+    "oldPassword": "old password",
+    "newPassword": "new password",
+    "changePassword": "change password"
   },
   "drawer": {
-    "changeLanguage": "change language",
     "editProfile": "edit my info",
     "logout": "logout",
     "language": "english",
-    "changePassword": "change password"
+    "changePassword": "change password",
+    "userName": "user name"
   },
   "home": {
     "welcome": "welcome"
   },
-  "change": "change",
-  "create": "create",
+  "languageSheet": {
+    "change": "change",
+    "changeLanguage": "change language"
+  },
+  "notifications": {
+    "notifications": "notifications"
+  },
+  "editInfo": {
+    "changePhoto": "change photo",
+    "saveChanges": "save changes"
+  },
+  "segment": {
+    "new": "new",
+    "underReview": "under review",
+    "done": "done"
+  },
+  "createReport": {
+    "create": "create"
+  },
+  "comments": {
+    "addComment": "write your comment",
+    "send": "send",
+    "comments": "Replies"
+  },
   "username": "UserName",
   "password": "Password",
   "logout": "Log out",

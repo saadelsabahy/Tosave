@@ -1,16 +1,19 @@
 import React from 'react';
-import {StyleSheet, FlatList, View} from 'react-native';
+import {I18nManager, Platform, FlatList, StyleSheet, View} from 'react-native';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import {CustomText} from '../customText';
 import {
   BADGE_COLOR,
+  INPUTS_AND_BUTTONS_HEIGHT,
   MONTHLY_CALENDAR_CONTAINER,
+  SCREEN_WIDTH,
 } from '../../constants/design/colorsAndSizes';
 import HsaCard from '../WelcomeDashboardListItem';
 import {MonthlyCalendar} from '../../Svgs';
 // import {FlatList} from 'react-native-gesture-handler';
 dayjs.extend(localeData);
+
 const CustomCalendarStripe = ({calenderMonthStyle}) => {
   return (
     <View style={styles.container}>
@@ -19,6 +22,11 @@ const CustomCalendarStripe = ({calenderMonthStyle}) => {
         contentContainerStyle={{justifyContent: 'space-between'}}
         keyExtractor={(item, index) => `${index}`}
         horizontal
+        legacyImplementation={false}
+        removeClippedSubviews={Platform.OS === 'android'}
+        style={{
+          flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+        }}
         showsHorizontalScrollIndicator={false}
         renderItem={({item, index}) => {
           return (
@@ -34,6 +42,9 @@ const CustomCalendarStripe = ({calenderMonthStyle}) => {
             </View>
           );
         }}
+        initialNumToRender={5}
+        maxToRenderPerBatch={5}
+        removeClippedSubviews={Platform.OS === 'android'}
       />
     </View>
   );

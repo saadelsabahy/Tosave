@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, I18nManager, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {CustomText, Header, WelcomeDashboardListItem} from '../../Components';
 import {
@@ -13,13 +13,14 @@ import {DASHBOARD_DATA} from '../../constants/design/MockData';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const WelcomeDashboard = ({navigation, route}) => {
   const insets = useSafeAreaInsets();
-  const {category, description} = route.params;
+  const {category, category_ar, description} = route.params;
+  const CATEGORY = I18nManager.isRTL ? category_ar : category;
   const goBack = () => {
     navigation.goBack();
   };
-  const onItemPressed = ({category, icon}) => {
+  const onItemPressed = ({category, category_ar, icon}) => {
     console.log('itrem' + category);
-    navigation.navigate('DashboardCategory', {category, icon});
+    navigation.navigate('DashboardCategory', {category, category_ar, icon});
   };
   return (
     <View
@@ -29,7 +30,7 @@ const WelcomeDashboard = ({navigation, route}) => {
         <Header back goBack={goBack} notificationsNumber={10} />
         {/* header text */}
         <View style={[styles.textContainer]}>
-          <CustomText text={category} textStyle={styles.category} />
+          <CustomText text={CATEGORY} textStyle={styles.category} />
           <CustomText text={description} textStyle={styles.description} />
         </View>
         {/* list */}
@@ -42,12 +43,15 @@ const WelcomeDashboard = ({navigation, route}) => {
             }}
             numColumns={2}
             keyExtractor={(item, index) => `${item.id}`}
-            renderItem={({item: {icon, category, id}, index}) => {
+            renderItem={({item: {icon, category, category_ar, id}, index}) => {
+              const CATEGORY = I18nManager.isRTL ? category_ar : category;
               return (
                 <WelcomeDashboardListItem
                   ItemIcon={icon}
-                  itemName={category}
-                  onItemPressed={() => onItemPressed({category, icon})}
+                  itemName={CATEGORY}
+                  onItemPressed={() =>
+                    onItemPressed({category, category_ar, icon})
+                  }
                   delay={index * 500}
                 />
               );
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT / 10,
     justifyContent: 'space-evenly',
     alignSelf: 'center',
+    alignItems: 'flex-start',
   },
   listContainer: {
     flex: 1,

@@ -17,6 +17,7 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {CommentImageIcon} from '../../Svgs';
 import {CustomText} from '../customText';
+import {useTranslation} from 'react-i18next';
 
 const CommentInput = ({
   containerStyle,
@@ -27,6 +28,7 @@ const CommentInput = ({
   error,
   ...props
 }) => {
+  const {t} = useTranslation();
   return (
     <View>
       <View style={[styles.container, containerStyle]}>
@@ -34,6 +36,7 @@ const CommentInput = ({
           placeholderTextColor={PLACEHOLDER}
           style={[styles.input, inputStyle]}
           name={name}
+          placeholder={t('comments:addComment')}
           {...props}
         />
         {loadImage && (
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontFamily: 'Montserrat',
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
     fontSize: FONT_16,
     fontWeight: '600',
     textAlign: I18nManager.isRTL ? 'right' : 'left',

@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, I18nManager, StyleSheet, Text, View} from 'react-native';
 import {
   Block,
   CreateMonthlyReportIcon,
@@ -24,8 +24,12 @@ import {
 import {LIST_DATA} from '../../constants/design/MockData';
 import {CATEGORY_INCLUDES_PRANCHES} from '../../constants/ConstantsVariables';
 import {DurationIcon, FilterIcon} from '../../Svgs';
+import {useTranslation} from 'react-i18next';
+
 const DashboardCategoryDetails = ({navigation, route}) => {
-  const {category, icon} = route.params;
+  const {t} = useTranslation();
+  const {category, category_ar, icon} = route.params;
+  const CATEGORY = I18nManager.isRTL ? category_ar : category;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const filterRef = useRef();
   const onNotificationsPressed = () => {
@@ -40,14 +44,14 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   };
 
   const onCreatePressed = () => {
-    navigation.navigate('CreateReport', {category});
+    navigation.navigate('CreateReport', {category, category_ar});
   };
 
   const goBack = () => {
     navigation.goBack();
   };
   const onItemPressed = ({date}) => {
-    navigation.navigate('ReportDetails', {category, date});
+    navigation.navigate('ReportDetails', {category, category_ar, date});
   };
   const onFilterIconPressed = () => {
     filterRef.current.open();
@@ -70,7 +74,7 @@ const DashboardCategoryDetails = ({navigation, route}) => {
               height: calcHeight(30),
               fill: GREEN100,
             })}
-            <CustomText text={category} textStyle={[styles.category]} />
+            <CustomText text={CATEGORY} textStyle={[styles.category]} />
           </View>
 
           {category.toLowerCase() == 'maintenance' ? (
@@ -81,7 +85,11 @@ const DashboardCategoryDetails = ({navigation, route}) => {
         </View>
 
         <Segment
-          values={['new', 'under review', 'done']}
+          values={[
+            t('segment:new'),
+            t('segment:underReview'),
+            t('segment:done'),
+          ]}
           selectedIndex={selectedIndex}
           onChange={onSegmentChange}
         />
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
   },
   calendarStripeContainer: {
     marginVertical: 10,
-    width: SCREEN_WIDTH,
+    width: '100%',
   },
   listContainer: {
     flex: 1,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, I18nManager, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {CustomText, Header, TextContainer} from '../../Components';
 import WelcomeScreenItem from '../../Components/WelcomeScreenItem';
@@ -19,13 +19,14 @@ const WelcomeScreen = ({navigation}) => {
     navigation.openDrawer();
   };
 
-  const onWelcomeItemPressed = ({category, description, icon}) => {
+  const onWelcomeItemPressed = ({category, category_ar, description, icon}) => {
     navigation.navigate(
       category.toLowerCase().trim() == 'hse'
         ? 'WelcomeDashboard'
         : 'DashboardCategory',
       {
         category,
+        category_ar,
         description,
         icon: category.toLowerCase().trim() == 'hse' ? null : icon,
       },
@@ -45,8 +46,8 @@ const WelcomeScreen = ({navigation}) => {
         />
 
         <View style={[styles.greetingContainer]}>
-          <CustomText text={'welcome !'} textStyle={[styles.welcome]} />
-          <TextContainer text={'Engineer Doaa'} />
+          <CustomText text={t('home:welcome')} textStyle={[styles.welcome]} />
+          <TextContainer text={t('drawer:userName')} />
         </View>
 
         <View
@@ -59,15 +60,27 @@ const WelcomeScreen = ({navigation}) => {
               flexGrow: 1,
             }}
             keyExtractor={(item, index) => `${item.id}`}
-            renderItem={({item: {icon, category, description}, index}) => {
+            renderItem={({
+              item: {icon, category, category_ar, description_ar, description},
+              index,
+            }) => {
+              const CATEGORY = I18nManager.isRTL ? category_ar : category;
+              const DESCRIPTION = I18nManager.isRTL
+                ? description_ar
+                : description;
               return (
                 <WelcomeScreenItem
                   SvgIcon={icon}
                   delay={index * 800}
-                  description={description}
-                  title={category}
+                  description={DESCRIPTION}
+                  title={CATEGORY}
                   onItemPressed={() =>
-                    onWelcomeItemPressed({category, description, icon})
+                    onWelcomeItemPressed({
+                      category,
+                      category_ar,
+                      description: DESCRIPTION,
+                      icon,
+                    })
                   }
                 />
               );
@@ -96,6 +109,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT / 9,
     alignSelf: 'center',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
   welcome: {
     fontSize: FONT_25,

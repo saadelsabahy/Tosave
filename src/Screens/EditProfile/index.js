@@ -15,8 +15,11 @@ import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from '../../constants/design/colorsAndSizes';
+import {useTranslation} from 'react-i18next';
 
 const EditProfile = ({navigation}) => {
+  const {t} = useTranslation();
+
   const goBack = () => {
     navigation.goBack();
   };
@@ -42,7 +45,10 @@ const EditProfile = ({navigation}) => {
         </View>
         <Block>
           <View style={[styles.screenNameContainer]}>
-            <CustomText text={'edit my info'} textStyle={[styles.screenName]} />
+            <CustomText
+              text={t('drawer:editProfile')}
+              textStyle={[styles.screenName]}
+            />
           </View>
 
           <View style={[styles.photoContainer]}>
@@ -50,16 +56,16 @@ const EditProfile = ({navigation}) => {
               pickIcon
               containerStyle={{width: '50%', height: '80%'}}
               /* onAvatarPressed={() => console.log('a')} */
-              pickText={'Change photo'}
+              pickText={t('editInfo:changePhoto')}
             />
           </View>
 
           <View style={[styles.inputsContainer]}>
             <LoginInput
-              label={'username'}
+              label={t('login:userName')}
               containerStyle={{marginVertical: 20}}
             />
-            <CustomButton />
+            <CustomButton buttonText={t('editInfo:saveChanges')} />
           </View>
         </Block>
       </KeyboardAwareScrollView>

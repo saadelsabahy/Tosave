@@ -17,8 +17,10 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {ChangePasswordLock} from '../../Svgs';
-
+import {useTranslation} from 'react-i18next';
 const ChangePassword = ({navigation}) => {
+  const {t} = useTranslation();
+
   const goBack = () => {
     navigation.goBack();
   };
@@ -43,7 +45,7 @@ const ChangePassword = ({navigation}) => {
         <Block>
           <View style={[styles.screenNameContainer]}>
             <CustomText
-              text={'change password'}
+              text={t('login:changePassword')}
               textStyle={[styles.screenName]}
             />
           </View>
@@ -57,14 +59,14 @@ const ChangePassword = ({navigation}) => {
 
           <View style={[styles.inputsContainer]}>
             <LoginInput
-              label={'old password'}
+              label={t('login:oldPassword')}
               containerStyle={{marginBottom: 10}}
             />
             <LoginInput
-              label={'old password'}
+              label={t('login:newPassword')}
               containerStyle={{marginBottom: 20}}
             />
-            <CustomButton />
+            <CustomButton buttonText={t('editInfo:saveChanges')} />
           </View>
         </Block>
       </KeyboardAwareScrollView>
