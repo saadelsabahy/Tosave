@@ -1,14 +1,19 @@
 {
-   "login": "log in",
-   "username":"username",
-   "password":"password",
-  "change":"change",
-  "changelanguage":"change language",
-  "language":"english",
-  "editprofile":"edit my info",
-  "logout":"log out",
-  "create":"create"
-     
-   
- 
- }
+  "login": {
+    "login": "log in",
+    "username": "username",
+    "password": "password"
+  },
+  "drawer": {
+    "changeLanguage": "change language",
+    "editProfile": "edit my info",
+    "logout": "logout",
+    "language": "english",
+    "changePassword": "change password"
+  },
+  "home": {
+    "welcome": "welcome"
+  },
+  "change": "change",
+  "create": "create"
+}

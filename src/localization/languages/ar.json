@@ -1,12 +1,19 @@
 {
-   "login": "تسجيل الدخول",
-   "username":"اسم المستخدم",
-   "password":"كلمه المرور",
-  "change":"تغيير",
-  "changelanguage":"تغيير اللغه",
-  "language":"العربيه",
-  "editprofile":"تعديل معلوماتي",
-  "logout":"تسجيل الخروج",
-  "create":"انشاء"
- 
- }
+  "login": {
+    "login": "تسجيل الدخول",
+    "username": "اسم المستخدم",
+    "password": "كلمه المرور"
+  },
+  "drawer": {
+    "changeLanguage": "تغيير اللغه",
+    "editProfile": "تعديل معلوماتي",
+    "logout": "تسجيل الخروج",
+    "language": "العربيه",
+    "changePassword": "تغير كلمه المرور"
+  },
+  "home": {
+    "welcome": "مرحبا"
+  },
+  "change": "تغيير",
+  "create": "انشاء"
+}

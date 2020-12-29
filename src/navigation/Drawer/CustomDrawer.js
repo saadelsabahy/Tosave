@@ -78,7 +78,10 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+          <CustomText
+            text={t('drawer:editProfile')}
+            textStyle={[styles.label]}
+          />
         </Pressable>
 
         {/* edit profile item */}
@@ -91,7 +94,10 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('changepassword')} textStyle={[styles.label]} />
+          <CustomText
+            text={t('drawer:changePassword')}
+            textStyle={[styles.label]}
+          />
         </Pressable>
 
         {/* edit profile item */}
@@ -104,14 +110,14 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <LoginWorldIcon style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('language')} textStyle={[styles.label]} />
+          <CustomText text={t('drawer:language')} textStyle={[styles.label]} />
         </Pressable>
       </View>
       <View style={[styles.buttonContainer]}>
         <CustomButton
           color={RED_COLOR}
           containerStyle={styles.button}
-          buttonText={t('logout')}
+          buttonText={t('drawer:logout')}
           onPress={onLogoutPressed}
         />
       </View>

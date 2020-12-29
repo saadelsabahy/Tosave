@@ -6,8 +6,8 @@ import ar from './languages/ar.json';
 // the translations
 // (tip move them in a JSON file and import them)
 const resources = {
-  ar: {translation: ar},
-  en: {translation: en},
+  ar,
+  en,
 };
 
 i18n

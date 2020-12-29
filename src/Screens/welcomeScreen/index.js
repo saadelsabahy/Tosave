@@ -10,8 +10,11 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {WELCOME_DATA} from '../../constants/design/MockData';
+import {useTranslation} from 'react-i18next';
 
 const WelcomeScreen = ({navigation}) => {
+  const {t, i18n} = useTranslation();
+
   const onPhotoPressed = () => {
     navigation.openDrawer();
   };
