@@ -1,5 +1,12 @@
 import React, {useRef} from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  I18nManager,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {
   Block,
   CommentImadeAndDescriptionCard,
@@ -18,8 +25,12 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {MONTHLY_REPORT_DATA} from '../../constants/design/MockData';
+import {useTranslation} from 'react-i18next';
+
 const MonthlyAndRisk = ({navigation, route}) => {
-  const {category, date} = route.params;
+  const {t} = useTranslation();
+  const {category, category_ar, date} = route.params;
+  const CATTEGORY = I18nManager.isRTL ? category_ar : category;
   const repliesModalRef = useRef(null);
   const [showSignatureModal, setshowSignatureModal] = React.useState(false);
   const [signature, setsignature] = React.useState(null);
@@ -36,7 +47,7 @@ const MonthlyAndRisk = ({navigation, route}) => {
     <View style={[styles.container]}>
       <Header back />
       <ReportSubHeader
-        reportName={`${category} ${
+        reportName={`${CATTEGORY} ${
           category.includes('report') ? '' : 'report'
         }`}
         reportDate={`${date}`}
@@ -52,7 +63,10 @@ const MonthlyAndRisk = ({navigation, route}) => {
             flexGrow: 1,
             paddingBottom: SCREEN_HEIGHT / 3.5,
           }}
-          renderItem={({item: {title, description, image}, index}) => {
+          renderItem={({
+            item: {title, description, image, title_ar, description_ar},
+            index,
+          }) => {
             return (
               <>
                 <StepNumberAndReportName />
@@ -60,11 +74,13 @@ const MonthlyAndRisk = ({navigation, route}) => {
                   <ReportHeader
                     containerStyle={{marginVertical: 5}}
                     number={index + 1}
-                    headerName={title}
+                    headerName={I18nManager.isRTL ? title_ar : title}
                   />
                   <CommentImadeAndDescriptionCard
                     commentImage={image}
-                    description={description}
+                    description={
+                      I18nManager.isRTL ? description_ar : description
+                    }
                     containerStyle={{width: '100%'}}
                   />
                 </View>

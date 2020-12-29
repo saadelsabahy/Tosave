@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     flex: 0.97,
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   headerText: {
     fontSize: FONT_16,

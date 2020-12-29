@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'flex-end',
     alignSelf: 'center',
+    alignItems: 'flex-start',
   },
   title: {
     fontSize: FONT_16,

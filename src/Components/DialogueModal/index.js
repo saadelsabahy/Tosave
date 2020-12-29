@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
   dialogueTextContainer: {
     justifyContent: 'center',
+    alignItems: 'flex-start',
     //backgroundColor: '#ddd',
   },
   dialogueText: {

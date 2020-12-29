@@ -53,5 +53,6 @@ const styles = StyleSheet.create({
   textContainer: {
     height: '100%',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
 });

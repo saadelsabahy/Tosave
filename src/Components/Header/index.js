@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     // width: 105,
-    flex: 0.6,
+    flex: 0.7,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: '#ddd',
+    //backgroundColor: '#ddd',
   },
   badge: {
     // position: 'absolute',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: SCREEN_WIDTH / 10,
-    // backgroundColor: 'red',
+    //backgroundColor: 'red',
   },
 });
 

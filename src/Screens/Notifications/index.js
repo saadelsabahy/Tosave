@@ -9,8 +9,10 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {NotificationIcon} from '../../Svgs';
+import {useTranslation} from 'react-i18next';
 
 const Notifications = ({navigation}) => {
+  const {t} = useTranslation();
   const goBack = () => {
     navigation.goBack();
   };
@@ -21,7 +23,10 @@ const Notifications = ({navigation}) => {
 
         <View style={[styles.headerTextContainer]}>
           <NotificationIcon fill={GREEN100} />
-          <CustomText text={'notifications'} textStyle={styles.headerText} />
+          <CustomText
+            text={t('notifications:notifications')}
+            textStyle={styles.headerText}
+          />
         </View>
 
         <View style={[styles.notificationListContainer]}>

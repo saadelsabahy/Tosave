@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {I18nManager, StyleSheet, Text, View} from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import {
   FONT_16,
@@ -39,14 +39,14 @@ const styles = StyleSheet.create({
   },
   segment: {height: '100%', borderRadius: 20, elevation: 0, margin: 0},
   font: {
-    fontFamily: 'Montserrat',
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
     fontSize: FONT_16,
     fontWeight: '600',
     color: GREEN100,
     textTransform: 'capitalize',
   },
   selectedFont: {
-    fontFamily: 'Montserrat',
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
     fontSize: FONT_16,
     color: WHITE_COLOR,
   },

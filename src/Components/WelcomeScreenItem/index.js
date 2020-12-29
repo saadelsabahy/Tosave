@@ -14,6 +14,7 @@ import {
   WELCOME_ITEM_HEIGHT,
   WHITE_COLOR,
   AnimatablePressable,
+  calcWidth,
 } from '../../constants/design/colorsAndSizes';
 import {HsaDashboardIcon, MaintenanceIcon} from '../../Svgs';
 import {CustomText} from '../customText';
@@ -108,8 +109,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   cardParagraph: {
-    width: 130,
-    height: 32,
+    width: calcWidth(130),
     fontSize: FONT_13,
     fontWeight: '500',
     color: WHITE_COLOR,

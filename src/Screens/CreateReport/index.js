@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {I18nManager, StyleSheet, Text, View} from 'react-native';
 import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
@@ -9,29 +9,44 @@ import CreateIncidentsReport from './CreateIncidentsReport';
 import CreateMaintenenceReport from './CreateMaintenenceReport';
 import CreateMonthlyReport from './CreateMonthlyReport';
 import CreateTrainingReport from './CreateTrainingReport';
+import {useTranslation} from 'react-i18next';
+
 const CreateReport = ({navigation, route}) => {
-  const {category} = route.params;
+  const {t, i18n} = useTranslation();
+
+  const {category, category_ar} = route.params;
+  const CATEGORY = I18nManager.isRTL ? category_ar : category;
   return (
     <View style={[styles.container]}>
       {['monthly reports', 'risks'].includes(category.toLowerCase()) && (
         <CreateMonthlyReport
-          screenName={`create ${category} ${
+          screenName={`${t('createReport:create')} ${CATEGORY} ${
             category.includes('report') ? '' : 'report'
           }`}
         />
       )}
       {['training', 'evacuation', 'first aid'].includes(
         category.toLowerCase(),
-      ) && <CreateTrainingReport screenName={`create ${category} report`} />}
+      ) && (
+        <CreateTrainingReport
+          screenName={`${t('createReport:create')} ${category} report`}
+        />
+      )}
       {['incidents'].includes(category.toLowerCase()) && (
-        <CreateIncidentsReport screenName={`create ${category} report`} />
+        <CreateIncidentsReport
+          screenName={`${t('createReport:create')} ${CATEGORY} report`}
+        />
       )}
 
       {['maintenance'].includes(category.toLowerCase()) && (
-        <CreateMaintenenceReport screenName={`create ${category} report`} />
+        <CreateMaintenenceReport
+          screenName={`${t('createReport:create')} ${CATEGORY} report`}
+        />
       )}
       {['help desk'].includes(category.toLowerCase()) && (
-        <CreateHelpDeskReport screenName={`create ${category} report`} />
+        <CreateHelpDeskReport
+          screenName={`${t('createReport:create')} ${CATEGORY} report`}
+        />
       )}
     </View>
   );

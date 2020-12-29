@@ -25,8 +25,6 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-
-	
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
@@ -40,14 +38,13 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSCameraUsageDescription</key>
-       <string>$(PRODUCT_NAME) need permission to access the camera. that you can use it to 
+	<string>$(PRODUCT_NAME) need permission to access the camera. that you can use it to &#xD;
           upload photos.</string>
-<key>NSMicrophoneUsageDescription</key>
-      <string>$(PRODUCT_NAME) Need permission to access to your microphone</string>
-
-<key>NSPhotoLibraryUsageDescription</key>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) Need permission to access to your microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME)  Need permission to access to your Photo library to be accessed for the first time</string>
 	<key>UIAppFonts</key>
 	<array>
@@ -68,6 +65,13 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Cairo-Regular.ttf</string>
+		<string>Cairo-Black.ttf</string>
+		<string>Cairo-Bold.ttf</string>
+		<string>Cairo-ExtraLight.ttf</string>
+		<string>Cairo-Light.ttf</string>
+		<string>Cairo-SemiBold.ttf</string>
+		<string>Cairo.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>

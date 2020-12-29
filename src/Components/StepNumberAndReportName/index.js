@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {I18nManager, StyleSheet, Text, View} from 'react-native';
 import {
   BADGE_COLOR,
   FONT_22,
@@ -40,12 +40,14 @@ const styles = StyleSheet.create({
   stepContainer: {
     width: 107,
     height: STEP_NUMBER_HEIGHT,
-    borderTopEndRadius: 10,
-    borderBottomEndRadius: 10,
+    borderTopEndRadius: I18nManager.isRTL ? 0 : 10,
+    borderBottomEndRadius: I18nManager.isRTL ? 0 : 10,
     backgroundColor: BADGE_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 8,
+    borderTopStartRadius: I18nManager.isRTL ? 10 : 0,
+    borderBottomStartRadius: I18nManager.isRTL ? 10 : 0,
   },
   text: {
     fontSize: FONT_22,

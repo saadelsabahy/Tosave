@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: GREEN50,
     justifyContent: 'center',
     alignItems: 'center',
+    //alignSelf: 'flex-end',
   },
   innerText: {
     fontSize: FONT_18,

@@ -1,11 +1,44 @@
 {
-   "login": "تسجيل الدخول",
-   "username": "اسم المستخدم",
-   "password": "كلمه المرور",
-   "change": "تغيير",
-   "changelanguage": "تغيير اللغه",
-   "language": "العربيه",
-   "editprofile": "تعديل معلوماتي",
-   "logout": "تسجيل الخروج",
-   "create": "انشاء"
+  "login": {
+    "login": "تسجيل الدخول",
+    "userName": "اسم المستخدم",
+    "password": "كلمه المرور",
+    "changePassword": "تغير كلمه المرور",
+    "oldPassword": "كلمه المرور القديمه",
+    "newPassword": "كلمه المرور الحديثه"
+  },
+  "drawer": {
+    "editProfile": "تعديل معلوماتي",
+    "logout": "تسجيل الخروج",
+    "language": "العربيه",
+    "changePassword": "تغير كلمه المرور",
+    "userName": "اسم المستخدم"
+  },
+  "home": {
+    "welcome": "مرحبا"
+  },
+  "languageSheet": {
+    "change": "تغيير",
+    "changeLanguage": "تغيير اللغه"
+  },
+  "notifications": {
+    "notifications": "التنبيهات"
+  },
+  "editInfo": {
+    "changePhoto": "تغير الصوره",
+    "saveChanges": "حفظ التغييرات"
+  },
+  "segment": {
+    "new": "جديد",
+    "underReview": "قيد المعاينه",
+    "done": "تم"
+  },
+  "createReport": {
+    "create": "انشاء"
+  },
+  "comments": {
+    "comments": "التعليقات",
+    "addComment": "اكتب تعليقك",
+    "send": "ارسال"
+  }
 }

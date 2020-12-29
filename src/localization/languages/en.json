@@ -1,35 +1,75 @@
 {
-   "login": "Log In",
-   "username": "UserName",
-   "password": "Password",
-   "logout": "Log out",
-   "welocme": "Welcome !",
-   "changeLanguage": "Change Language",
-   "change": "Change",
-   "editprofile": "Edit my Info",
-   "changePassword": "Change Password",
-   "submitReport":"Submit Report",
-   "new":"New",
-   "underReview":"Under Review",
-   "done":"Done",
-   "hse": "HSE",
-   "healthSafetySection": "Health and Safety Reports",
-   "maintainance": "MAINTAINANCE",
-   "maintainanceSubtitle": "Fix and Request Devices",
-   "helpDesk": "HELP DESK",
-   "helpDeskSubtitle": "Contact Support",
-   "monthelyReports": "Monthely Reports",
-   "riskReports": "Risk Reports",
-   "trainingReports": "Training Reports",
-   "incidentReports": "Incident Reports",
-   "evacuationReports": "Evacuation Reports",
-   "firstAidReports": "First-Aid Reports",
-   "comment":"Send Reply",
-   "writeReply":"Write your reply here",
-   "writeComment":"Write your comment here",
-   "createRisk":"Create Risk Assesment Report", 
-   "createTraining":"Create Training Report" ,
-   "createEvacuation":"Create Training Report" ,
-   "createFirstAid":"Create Training Report" ,
-   "createIncident":"Create Training Report"
+  "login": {
+    "login": "log in",
+    "userName": "username",
+    "password": "password",
+    "oldPassword": "old password",
+    "newPassword": "new password",
+    "changePassword": "change password"
+  },
+  "drawer": {
+    "editProfile": "edit my info",
+    "logout": "logout",
+    "language": "english",
+    "changePassword": "change password",
+    "userName": "user name"
+  },
+  "home": {
+    "welcome": "welcome"
+  },
+  "languageSheet": {
+    "change": "change",
+    "changeLanguage": "change language"
+  },
+  "notifications": {
+    "notifications": "notifications"
+  },
+  "editInfo": {
+    "changePhoto": "change photo",
+    "saveChanges": "save changes"
+  },
+  "segment": {
+    "new": "new",
+    "underReview": "under review",
+    "done": "done"
+  },
+  "createReport": {
+    "create": "create"
+  },
+  "comments": {
+    "addComment": "write your comment",
+    "send": "send",
+    "comments": "Replies"
+  },
+  "username": "UserName",
+  "password": "Password",
+  "logout": "Log out",
+  "welocme": "Welcome !",
+  "changeLanguage": "Change Language",
+  "editprofile": "Edit my Info",
+  "changePassword": "Change Password",
+  "submitReport": "Submit Report",
+  "new": "New",
+  "underReview": "Under Review",
+  "done": "Done",
+  "hse": "HSE",
+  "healthSafetySection": "Health and Safety Reports",
+  "maintainance": "MAINTAINANCE",
+  "maintainanceSubtitle": "Fix and Request Devices",
+  "helpDesk": "HELP DESK",
+  "helpDeskSubtitle": "Contact Support",
+  "monthelyReports": "Monthely Reports",
+  "riskReports": "Risk Reports",
+  "trainingReports": "Training Reports",
+  "incidentReports": "Incident Reports",
+  "evacuationReports": "Evacuation Reports",
+  "firstAidReports": "First-Aid Reports",
+  "comment": "Send Reply",
+  "writeReply": "Write your reply here",
+  "writeComment": "Write your comment here",
+  "createRisk": "Create Risk Assesment Report",
+  "createTraining": "Create Training Report",
+  "createEvacuation": "Create Training Report",
+  "createFirstAid": "Create Training Report",
+  "createIncident": "Create Training Report"
 }

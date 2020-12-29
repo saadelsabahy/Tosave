@@ -17,8 +17,10 @@ import {CustomButton} from '../CustomButton';
 import {CustomText} from '../customText';
 import PhotoRecangle from '../PhotoRecangle';
 import {ReportHeader} from '../ReportHeader';
+import {useTranslation} from 'react-i18next';
 
 const RepliesModal = ({reference}) => {
+  const {t} = useTranslation();
   return (
     <CustomBottomSheet
       snapPoints={SCREEN_HEIGHT * 0.95}
@@ -58,7 +60,10 @@ const RepliesModal = ({reference}) => {
       HeaderComponent={() => (
         <View style={[styles.headerContainer]}>
           <RepliesIcon fill={GREEN100} />
-          <CustomText text={'replies'} textStyle={styles.headerText} />
+          <CustomText
+            text={t('comments:comments')}
+            textStyle={styles.headerText}
+          />
         </View>
       )}
       FooterComponent={() => {
@@ -71,7 +76,10 @@ const RepliesModal = ({reference}) => {
               alignItems: 'center',
             }}>
             <CommentInput />
-            <CustomButton containerStyle={{width: '95%'}} />
+            <CustomButton
+              containerStyle={{width: '95%'}}
+              buttonText={t('comments:send')}
+            />
           </View>
         );
       }}

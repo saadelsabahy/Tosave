@@ -61,7 +61,10 @@ function CustomDrawer({navigation, ...props}) {
         />
         <View style={[styles.imageContainer]}>
           <PhotoRecangle containerStyle={styles.photo} />
-          <CustomText text={'user name'} textStyle={[styles.userName]} />
+          <CustomText
+            text={t('drawer:userName')}
+            textStyle={[styles.userName]}
+          />
         </View>
       </View>
 
@@ -78,7 +81,10 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('editprofile')} textStyle={[styles.label]} />
+          <CustomText
+            text={t('drawer:editProfile')}
+            textStyle={[styles.label]}
+          />
         </Pressable>
 
         {/* edit profile item */}
@@ -91,7 +97,10 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <EditIconWithoutBg style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('changepassword')} textStyle={[styles.label]} />
+          <CustomText
+            text={t('drawer:changePassword')}
+            textStyle={[styles.label]}
+          />
         </Pressable>
 
         {/* edit profile item */}
@@ -104,14 +113,16 @@ function CustomDrawer({navigation, ...props}) {
           <Pressable style={[styles.iconContainer]}>
             <LoginWorldIcon style={{margin: 0, padding: 0}} />
           </Pressable>
-          <CustomText text={t('language')} textStyle={[styles.label]} />
+          <CustomText text={t('drawer:language')} textStyle={[styles.label]} />
         </Pressable>
       </View>
       <View style={[styles.buttonContainer]}>
         <CustomButton
           color={RED_COLOR}
-          containerStyle={styles.button}
-          buttonText={t('logout')}
+          containerStyle={
+            I18nManager.isRTL ? styles.buttonRtl : styles.buttonLtr
+          }
+          buttonText={t('drawer:logout')}
           onPress={onLogoutPressed}
         />
       </View>
@@ -150,6 +161,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: '70%',
     justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
   },
   userName: {
     fontSize: calcFont(20),
@@ -190,10 +202,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignSelf: 'center',
   },
-  button: {
+  buttonLtr: {
     width: '80%',
     borderTopStartRadius: 0,
     borderBottomStartRadius: 0,
+  },
+  buttonRtl: {
+    width: '80%',
+    borderTopEndRadius: 0,
+    borderBottomEndRadius: 0,
   },
 });
 

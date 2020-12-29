@@ -1,6 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {TextInput, DarkTheme, HelperText} from 'react-native-paper';
+import {StyleSheet, Text, View, I18nManager} from 'react-native';
+import {
+  TextInput,
+  DarkTheme,
+  HelperText,
+  configureFonts,
+} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   LOGIN_INPUT_BG,
@@ -11,6 +16,21 @@ import {
   FONT_18,
 } from '../../constants/design/colorsAndSizes';
 import {CustomText} from '../customText';
+
+const fonts = {
+  regular: {
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
+  },
+  medium: {
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
+  },
+  thin: {
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
+  },
+  light: {
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
+  },
+};
 const LoginInput = ({
   label,
   inputContainerStyle,
@@ -24,6 +44,10 @@ const LoginInput = ({
   const theme = {
     ...DarkTheme,
     roundness: 5,
+    fonts: configureFonts({
+      ios: fonts,
+      android: fonts,
+    }),
     colors: {
       ...DarkTheme.colors,
       text: TEXT_BLACK,
@@ -75,7 +99,7 @@ const styles = StyleSheet.create({
     height: INPUTS_AND_BUTTONS_HEIGHT + 4,
     overflow: 'hidden',
     fontSize: FONT_18,
-    fontFamily: 'Montserrat',
-    fontWeight: '600',
+    fontFamily: I18nManager.isRTL ? 'Cairo' : 'Montserrat',
+    fontWeight: I18nManager.isRTL ? '100' : '600',
   },
 });
