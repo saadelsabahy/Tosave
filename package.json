@@ -11,6 +11,7 @@
     "bundle": "cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.6",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/segmented-control": "^2.2.1",
@@ -40,7 +41,8 @@
     "react-native-signature-canvas": "^3.3.0",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^7.1.0",
-    "react-native-webview": "^11.0.0"
+    "react-native-webview": "^11.0.0",
+    "subscriptions-transport-ws": "^0.9.18"
   },
   "devDependencies": {
     "@babel/core": "^7.12.7",
