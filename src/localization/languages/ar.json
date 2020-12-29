@@ -1,12 +1,11 @@
 {
    "login": "تسجيل الدخول",
-   "username":"اسم المستخدم",
-   "password":"كلمه المرور",
-  "change":"تغيير",
-  "changelanguage":"تغيير اللغه",
-  "language":"العربيه",
-  "editprofile":"تعديل معلوماتي",
-  "logout":"تسجيل الخروج",
-  "create":"انشاء"
- 
- }
+   "username": "اسم المستخدم",
+   "password": "كلمه المرور",
+   "change": "تغيير",
+   "changelanguage": "تغيير اللغه",
+   "language": "العربيه",
+   "editprofile": "تعديل معلوماتي",
+   "logout": "تسجيل الخروج",
+   "create": "انشاء"
+}
