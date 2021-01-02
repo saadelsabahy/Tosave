@@ -119,9 +119,7 @@ function CustomDrawer({navigation, ...props}) {
       <View style={[styles.buttonContainer]}>
         <CustomButton
           color={RED_COLOR}
-          containerStyle={
-            I18nManager.isRTL ? styles.buttonRtl : styles.buttonLtr
-          }
+          containerStyle={styles.button}
           buttonText={t('drawer:logout')}
           onPress={onLogoutPressed}
         />
@@ -129,7 +127,6 @@ function CustomDrawer({navigation, ...props}) {
     </DrawerContentScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   stack: {
     flex: 1,
@@ -202,15 +199,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignSelf: 'center',
   },
-  buttonLtr: {
+  button: {
     width: '80%',
     borderTopStartRadius: 0,
     borderBottomStartRadius: 0,
-  },
-  buttonRtl: {
-    width: '80%',
-    borderTopEndRadius: 0,
-    borderBottomEndRadius: 0,
+    borderTopEndRadius: 20,
+    borderBottomEndRadius: 20,
   },
 });
 

@@ -31,6 +31,7 @@ const EditProfile = ({navigation}) => {
         enableOnAndroid
         extraScrollHeight={0}
         extraHeight={0}
+        enableAutomaticScroll
         stickyHeaderIndices={[0]}>
         <View style={{width: '100%'}}>
           <Header

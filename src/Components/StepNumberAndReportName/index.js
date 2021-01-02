@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
   stepContainer: {
     width: 107,
     height: STEP_NUMBER_HEIGHT,
-    borderTopEndRadius: I18nManager.isRTL ? 0 : 10,
-    borderBottomEndRadius: I18nManager.isRTL ? 0 : 10,
+
     backgroundColor: BADGE_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
     marginEnd: 8,
-    borderTopStartRadius: I18nManager.isRTL ? 10 : 0,
-    borderBottomStartRadius: I18nManager.isRTL ? 10 : 0,
+    borderRadius: 0,
+    borderTopEndRadius: 20,
+    borderBottomEndRadius: 20,
   },
   text: {
     fontSize: FONT_22,

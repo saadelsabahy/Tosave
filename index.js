@@ -10,5 +10,7 @@ import App from './App';
 import {name as appName} from './app.json';
 
 dayjs.locale(I18nManager.isRTL ? 'ar' : 'en');
+import {enableScreens} from 'react-native-screens';
+enableScreens();
 
 AppRegistry.registerComponent(appName, () => App);

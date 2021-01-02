@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useContext,
 } from 'react';
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {StyleSheet, Text, View, Pressable, I18nManager} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   CustomText,
@@ -76,18 +76,19 @@ const Login = () => {
           <LoginPhoto />
         </View>
         <View style={[styles.bottomContainer]}>
-          <CustomText text={t('login')} textStyle={[styles.text]} />
+          <CustomText text={t('login:login')} textStyle={[styles.text]} />
           <View style={[styles.inputsAndButtonContainer]}>
             <LoginInput
               onSubmitEditing={() => passwordInputRef.current?.focus()}
               returnKeyType={'next'}
-              label={t('username')}
+              label={t('login:userName')}
               // errorText={'hello'}
             />
             <LoginInput
               referance={passwordInputRef}
-              label={t('password')}
+              label={t('login:password')}
               secureTextEntry={secureInput}
+              /* inputStyle={{start: I18nManager.isRTL ? -calcFont(17) : 0}} */
               // errorText={'hello'}
               right={
                 <TextInput.Icon
@@ -99,7 +100,7 @@ const Login = () => {
               }
             />
             <CustomButton
-              buttonText={t('login')}
+              buttonText={t('login:login')}
               containerStyle={styles.button}
               onPress={onLoginPressed}
             />
@@ -128,6 +129,7 @@ const styles = StyleSheet.create({
   keyboardAwareScrollView: {
     width: SCREEN_WIDTH - 20,
     height: SCREEN_HEIGHT,
+    flexGrow: 1,
   },
   topContainer: {
     width: '100%',

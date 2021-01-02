@@ -3,6 +3,7 @@ import {I18nManager, StyleSheet, Text, View} from 'react-native';
 import {CustomBottomSheet, LanguageSheet, LoginInput} from '../Components';
 import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
+import AsyncStorage from '@react-native-community/async-storage';
 export const LanguageSheetContext = React.createContext();
 const LanguageSheetProvider = ({children}) => {
   const languageModalRef = useRef();
@@ -21,6 +22,7 @@ const LanguageSheetProvider = ({children}) => {
     // const language_code = I18nManager.isRTL ? 'en' : 'ar';
     try {
       console.log(selectedLanguage);
+      await AsyncStorage.setItem('@CACHED_LANG', selectedLanguage);
       await i18n.changeLanguage(selectedLanguage);
       languageModalRef.current?.close();
       I18nManager.forceRTL(selectedLanguage == 'ar');
