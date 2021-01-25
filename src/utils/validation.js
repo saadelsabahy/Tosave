@@ -1,4 +1,4 @@
-export default {
+export default (t) => ({
   comment: {required: {value: true, message: 'you must provide comment'}},
 
   email: {
@@ -9,6 +9,29 @@ export default {
     },
   },
   password: {
-    required: {value: true, message: 'Password is required'},
+    required: {
+      value: true,
+      message: t('validation:required', {fieldName: t('login:password')}),
+    },
+    minLength: {
+      value: 6,
+      message: t('validation:minLength', {
+        fieldName: t('login:password'),
+        minLength: 6,
+      }),
+    },
   },
-};
+  name: {
+    required: {
+      value: true,
+      message: t('validation:required', {fieldName: t('login:userName')}),
+    },
+    minLength: {
+      value: 2,
+      message: t('validation:minLength', {
+        fieldName: t('login:userName'),
+        minLength: 2,
+      }),
+    },
+  },
+});
