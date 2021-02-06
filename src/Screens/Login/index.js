@@ -55,7 +55,7 @@ const Login = () => {
     {onSuccess: (data) => onSignInSuccess(data)},
   );
   //login
-  const onLoginPressed = (data) => {
+  const onLoginPressed = async (data) => {
     mutate(data);
   };
   const onSignInSuccess = ({data}) => {
@@ -63,6 +63,7 @@ const Login = () => {
       userToken: data.token,
       userName: data.display_name,
       userType: data.user_type,
+      userId: data.id,
     });
     reset();
   };

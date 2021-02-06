@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -18,11 +18,56 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {ChangePasswordLock} from '../../Svgs';
 import {useTranslation} from 'react-i18next';
+import {Controller, useForm} from 'react-hook-form';
+import validation from '../../utils/validation';
+import {useMutation} from 'react-query';
+import {endPoints} from '../../constants/api/Auth';
+import {AuthenticationContext} from '../../navigation/AuthContext';
+import {useAxios} from '../../hooks';
+
+const defaultValues = {
+  oldPassword: '',
+  newPassword: '',
+};
 const ChangePassword = ({navigation}) => {
   const {t} = useTranslation();
-
+  const Axios = useAxios();
+  const {
+    state: {userName},
+  } = useContext(AuthenticationContext);
+  const {handleSubmit, errors, reset, control} = useForm({
+    mode: 'all',
+    reValidateMode: 'onBlur',
+    defaultValues,
+    resolver: undefined,
+    context: undefined,
+    criteriaMode: 'firstError',
+    shouldFocusError: true,
+    shouldUnregister: true,
+  });
   const goBack = () => {
     navigation.goBack();
+  };
+  const {isLoading, mutate, data, isError} = useMutation(
+    ({oldPassword, newPassword}) =>
+      Axios.post(endPoints.CHANGE_PASSWORD, {
+        password: oldPassword,
+        confirmPassword: newPassword,
+        username: userName,
+      }),
+    {onSuccess: (data) => onChangePasswordSuccess(data)},
+  );
+  //login
+  const onChangePasswordPressed = (data) => {
+    mutate(data);
+  };
+  const onChangePasswordSuccess = ({data}) => {
+    /* authContext.signIn({
+      userToken: data.token,
+      userName: data.display_name,
+      userType: data.user_type,
+    }); */
+    reset();
   };
   return (
     <SafeAreaView style={[styles.container]}>
@@ -58,15 +103,44 @@ const ChangePassword = ({navigation}) => {
           </View>
 
           <View style={[styles.inputsContainer]}>
-            <LoginInput
-              label={t('login:oldPassword')}
-              containerStyle={{marginBottom: 10}}
+            <Controller
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <LoginInput
+                  label={t('login:oldPassword')}
+                  containerStyle={{marginBottom: 10}}
+                  errorText={errors?.oldPassword?.message}
+                  error={errors.oldPassword}
+                  onChangeText={(value) => onChange(value)}
+                  onBlur={onBlur}
+                  value={value}
+                />
+              )}
+              name="oldPassword"
+              rules={validation(t)['password']}
             />
-            <LoginInput
-              label={t('login:newPassword')}
-              containerStyle={{marginBottom: 20}}
+            <Controller
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <LoginInput
+                  label={t('login:newPassword')}
+                  containerStyle={{marginBottom: 20}}
+                  errorText={errors?.newPassword?.message}
+                  error={errors.newPassword}
+                  onChangeText={(value) => onChange(value)}
+                  onBlur={onBlur}
+                  value={value}
+                />
+              )}
+              name="newPassword"
+              rules={validation(t)['password']}
             />
-            <CustomButton buttonText={t('editInfo:saveChanges')} />
+
+            <CustomButton
+              buttonText={t('editInfo:saveChanges')}
+              onPress={handleSubmit(onChangePasswordPressed)}
+              loading={isLoading}
+            />
           </View>
         </Block>
       </KeyboardAwareScrollView>

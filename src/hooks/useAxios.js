@@ -14,6 +14,7 @@ const useAxios = () => {
     baseURL: endPoints.BASE_URL,
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       timeout: 10000,
       authorization: '62c0c6cacf66f3cdff5b34db8615ded4',
     },

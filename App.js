@@ -20,24 +20,33 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {I18nextProvider} from 'react-i18next';
 import i18next from './src/localization';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import reactotron from 'reactotron-react-native';
 
+const appolloClient = new ApolloClient({
+  uri: 'http://tosafe.trendsgcc.com/v1/graphql',
+  cache: new InMemoryCache(),
+});
 const queryClient = new QueryClient();
+
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#fff'} />
       <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider style={styles.saveArea}>
-          <I18nextProvider i18n={i18next}>
-            <PaperProvider>
-              <AuthContext>
-                <LanguageSheetProvider>
-                  <AppNavigation />
-                </LanguageSheetProvider>
-              </AuthContext>
-            </PaperProvider>
-          </I18nextProvider>
-        </SafeAreaProvider>
+        <ApolloProvider client={appolloClient}>
+          <SafeAreaProvider style={styles.saveArea}>
+            <I18nextProvider i18n={i18next}>
+              <PaperProvider>
+                <AuthContext>
+                  <LanguageSheetProvider>
+                    <AppNavigation />
+                  </LanguageSheetProvider>
+                </AuthContext>
+              </PaperProvider>
+            </I18nextProvider>
+          </SafeAreaProvider>
+        </ApolloProvider>
       </QueryClientProvider>
     </>
   );
