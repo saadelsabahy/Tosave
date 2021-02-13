@@ -72,7 +72,7 @@ const queryClient = new QueryClient();
 
 const App: () => React$Node = () => {
   return (
-    <>
+    <SafeAreaProvider style={styles.saveArea}>
       <StatusBar barStyle="dark-content" backgroundColor={'#fff'} />
       <QueryClientProvider client={queryClient}>
         <ApolloProvider client={appolloClient}>
