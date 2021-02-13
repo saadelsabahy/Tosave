@@ -25,7 +25,8 @@ import {LIST_DATA} from '../../constants/design/MockData';
 import {CATEGORY_INCLUDES_PRANCHES} from '../../constants/ConstantsVariables';
 import {DurationIcon, FilterIcon} from '../../Svgs';
 import {useTranslation} from 'react-i18next';
-
+import {useQuery, useSubscription} from '@apollo/client';
+import {GET_MONTHLY} from '../../constants/api/Graphql/Queries';
 const DashboardCategoryDetails = ({navigation, route}) => {
   const {t} = useTranslation();
   const {category, category_ar, icon} = route.params;
@@ -38,7 +39,11 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   const onPhotoPressed = () => {
     navigation.openDrawer();
   };
+  const {data} = useSubscription(GET_MONTHLY, {
+    variables: {filter: {}},
+  });
 
+  console.log({data});
   const onSegmentChange = (event) => {
     setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
   };

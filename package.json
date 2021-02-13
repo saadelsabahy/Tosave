@@ -11,13 +11,14 @@
     "bundle": "cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.8",
+    "@apollo/client": "^3.3.9",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/segmented-control": "^2.2.1",
     "@react-navigation/drawer": "^5.11.4",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
+    "aws-sdk": "^2.843.0",
     "axios": "^0.21.1",
     "dayjs": "^1.9.6",
     "graphql": "^15.5.0",
@@ -47,7 +48,9 @@
     "react-native-vector-icons": "^7.1.0",
     "react-native-webview": "^11.0.0",
     "react-query": "^3.6.0",
-    "reactotron-react-native": "^5.0.0"
+    "react-uuid": "^1.0.2",
+    "reactotron-react-native": "^5.0.0",
+    "subscriptions-transport-ws": "^0.9.18"
   },
   "devDependencies": {
     "@babel/core": "^7.12.7",

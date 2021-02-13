@@ -22,11 +22,12 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {AuthenticationContext} from '../../navigation/AuthContext';
 import {useMutation} from '@apollo/client';
 import {UPDATE_USER} from '../../constants/api/Graphql/Mutation';
+import {uploadImages} from '../../constants/uploadImages';
 const defaultValues = {
   newName: '',
 };
 const EditProfile = ({navigation}) => {
-  const [newAvatar, setnewAvatar] = useState('');
+  const [newAvatar, setnewAvatar] = useState({});
   const {t} = useTranslation();
   const {
     state: {userId},
@@ -47,7 +48,10 @@ const EditProfile = ({navigation}) => {
     navigation.goBack();
   };
   const onChangeInfoPressed = ({newName}) => {
-    updateUser({variables: {id, type: input.value}});
+    /* updateUser({variables: {id, type: input.value}}); */
+    uploadImages([newAvatar], (avatar) =>
+      updateUser({variables: {id: userId, name: newName, avatar: avatar[0]}}),
+    );
   };
   const onChangeAvatarPressed = () => {
     ImagePicker.openPicker({
@@ -57,7 +61,7 @@ const EditProfile = ({navigation}) => {
     })
       .then((images) => {
         console.log(images);
-        setnewAvatar(images.path);
+        setnewAvatar(images);
       })
       .catch((e) => console.log('select profile avatar error', e));
   };
@@ -96,7 +100,7 @@ const EditProfile = ({navigation}) => {
               containerStyle={{width: '50%', height: '80%'}}
               onAvatarPressed={onChangeAvatarPressed}
               pickText={t('editInfo:changePhoto')}
-              uri={newAvatar}
+              uri={newAvatar.path || ''}
             />
           </View>
 

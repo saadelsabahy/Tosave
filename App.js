@@ -20,12 +20,53 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {I18nextProvider} from 'react-i18next';
 import i18next from './src/localization';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  split,
+} from '@apollo/client';
+import {setContext} from '@apollo/client/link/context';
+import {WebSocketLink} from '@apollo/client/link/ws';
 import reactotron from 'reactotron-react-native';
+import {getMainDefinition} from '@apollo/client/utilities';
+
+const httpLink = new HttpLink({
+  uri: 'http://tosafe.trendsgcc.com/v1/graphql',
+  headers: {
+    'x-hasura-admin-secret': 'tosafe#5@2021',
+  },
+});
+
+const wsLink = new WebSocketLink({
+  uri: 'http://tosafe.trendsgcc.com/v1/graphql',
+  options: {
+    reconnect: true,
+    connectionParams: {
+      headers: {
+        'x-hasura-admin-secret': 'tosafe#5@2021',
+      },
+    },
+  },
+});
+
+const splitLink = split(
+  ({query}) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 const appolloClient = new ApolloClient({
-  uri: 'http://tosafe.trendsgcc.com/v1/graphql',
+  link: splitLink,
   cache: new InMemoryCache(),
+  headers: {'x-hasura-admin-secret': 'tosafe#5@2021'},
 });
 const queryClient = new QueryClient();
 
