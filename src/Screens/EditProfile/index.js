@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -16,12 +16,50 @@ import {
   SCREEN_WIDTH,
 } from '../../constants/design/colorsAndSizes';
 import {useTranslation} from 'react-i18next';
-
+import {useForm, Controller} from 'react-hook-form';
+import validation from '../../utils/validation';
+import ImagePicker from 'react-native-image-crop-picker';
+import {AuthenticationContext} from '../../navigation/AuthContext';
+import {useMutation} from '@apollo/client';
+import {UPDATE_USER} from '../../constants/api/Graphql/Mutation';
+const defaultValues = {
+  newName: '',
+};
 const EditProfile = ({navigation}) => {
+  const [newAvatar, setnewAvatar] = useState('');
   const {t} = useTranslation();
+  const {
+    state: {userId},
+  } = useContext(AuthenticationContext);
 
+  const {handleSubmit, errors, reset, control} = useForm({
+    mode: 'all',
+    reValidateMode: 'onBlur',
+    defaultValues,
+    resolver: undefined,
+    context: undefined,
+    criteriaMode: 'firstError',
+    shouldFocusError: true,
+    shouldUnregister: true,
+  });
+  const [updateUser, {data, loading}] = useMutation(UPDATE_USER);
   const goBack = () => {
     navigation.goBack();
+  };
+  const onChangeInfoPressed = ({newName}) => {
+    updateUser({variables: {id, type: input.value}});
+  };
+  const onChangeAvatarPressed = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      mediaType: 'photo',
+    })
+      .then((images) => {
+        console.log(images);
+        setnewAvatar(images.path);
+      })
+      .catch((e) => console.log('select profile avatar error', e));
   };
   return (
     <SafeAreaView style={[styles.container]}>
@@ -31,6 +69,7 @@ const EditProfile = ({navigation}) => {
         enableOnAndroid
         extraScrollHeight={0}
         extraHeight={0}
+        enableAutomaticScroll
         stickyHeaderIndices={[0]}>
         <View style={{width: '100%'}}>
           <Header
@@ -55,17 +94,34 @@ const EditProfile = ({navigation}) => {
             <PhotoRecangle
               pickIcon
               containerStyle={{width: '50%', height: '80%'}}
-              /* onAvatarPressed={() => console.log('a')} */
+              onAvatarPressed={onChangeAvatarPressed}
               pickText={t('editInfo:changePhoto')}
+              uri={newAvatar}
             />
           </View>
 
           <View style={[styles.inputsContainer]}>
-            <LoginInput
-              label={t('login:userName')}
-              containerStyle={{marginVertical: 20}}
+            <Controller
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <LoginInput
+                  label={t('login:userName')}
+                  errorText={errors?.newName?.message}
+                  error={errors.newName}
+                  onChangeText={(value) => onChange(value)}
+                  onBlur={onBlur}
+                  value={value}
+                  containerStyle={{marginVertical: 20}}
+                />
+              )}
+              name="newName"
+              rules={validation(t)['name']}
             />
-            <CustomButton buttonText={t('editInfo:saveChanges')} />
+
+            <CustomButton
+              buttonText={t('editInfo:saveChanges')}
+              onPress={handleSubmit(onChangeInfoPressed)}
+            />
           </View>
         </Block>
       </KeyboardAwareScrollView>

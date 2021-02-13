@@ -1,21 +1,7 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  useMemo,
-  useEffect,
-  useContext,
-} from 'react';
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import React, {useRef, useState, useContext} from 'react';
+import {StyleSheet, View, Pressable} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {
-  CustomText,
-  LoginInput,
-  Handle,
-  CustomButton,
-  LanguageSheet,
-  CustomBottomSheet,
-} from '../../Components';
+import {CustomText, LoginInput, CustomButton} from '../../Components';
 import {
   calcFont,
   calcHeight,
@@ -30,28 +16,56 @@ import {
 import {BackgroundRects, LoginPhoto, LoginWorldIcon, Logo} from '../../Svgs';
 import {useTranslation} from 'react-i18next';
 import {TextInput} from 'react-native-paper';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AuthenticationContext} from '../../navigation/AuthContext';
 import {LanguageSheetContext} from '../../context/LanguageSheetProvider';
-
+import {useForm, Controller} from 'react-hook-form';
+import validation from '../../utils/validation';
+import {useMutation} from 'react-query';
+import {useAxios} from '../../hooks';
+import {endPoints} from '../../constants/api/Auth';
+import reactotron from 'reactotron-react-native';
+const defaultValues = {
+  username: '',
+  password: '',
+};
 const Login = () => {
-  const {authContext, state} = useContext(AuthenticationContext);
+  const {authContext} = useContext(AuthenticationContext);
+  const Axios = useAxios();
   const passwordInputRef = useRef();
-  const bottomSheetRef = useRef(null);
   const [secureInput, setsecureInput] = useState(true);
-  const [selectedLanguage, setselectedLanguage] = useState('en');
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
   const {languageModalRef} = useContext(LanguageSheetContext);
-
+  const {handleSubmit, errors, reset, control} = useForm({
+    mode: 'all',
+    reValidateMode: 'onBlur',
+    defaultValues,
+    resolver: undefined,
+    context: undefined,
+    criteriaMode: 'firstError',
+    shouldFocusError: true,
+    shouldUnregister: true,
+  });
   //toggleSecureInput
   const toggleSecureInput = () => {
     passwordInputRef.current.focus();
     setsecureInput(!secureInput);
   };
-
+  const {isLoading, mutate, data, isError} = useMutation(
+    (userData) => Axios.post(endPoints.LOGIN, userData),
+    {onSuccess: (data) => onSignInSuccess(data)},
+  );
   //login
-  const onLoginPressed = () => {
-    authContext.signIn({userToken: 'fakeToken'});
+  const onLoginPressed = async (data) => {
+    mutate(data);
+  };
+  const onSignInSuccess = ({data}) => {
+    authContext.signIn({
+      userToken: data.token,
+      userName: data.display_name,
+      userType: data.user_type,
+      userId: data.id,
+    });
+    reset();
   };
   return (
     <View style={[styles.container]}>
@@ -76,32 +90,58 @@ const Login = () => {
           <LoginPhoto />
         </View>
         <View style={[styles.bottomContainer]}>
-          <CustomText text={t('login')} textStyle={[styles.text]} />
+          <CustomText text={t('login:login')} textStyle={[styles.text]} />
           <View style={[styles.inputsAndButtonContainer]}>
-            <LoginInput
-              onSubmitEditing={() => passwordInputRef.current?.focus()}
-              returnKeyType={'next'}
-              label={t('username')}
-              // errorText={'hello'}
-            />
-            <LoginInput
-              referance={passwordInputRef}
-              label={t('password')}
-              secureTextEntry={secureInput}
-              // errorText={'hello'}
-              right={
-                <TextInput.Icon
-                  onPress={toggleSecureInput}
-                  size={calcFont(20)}
-                  color={EYE_ICON_COLOR}
-                  name={secureInput ? 'eye-outline' : 'eye-off-outline'}
+            <Controller
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <LoginInput
+                  onSubmitEditing={() => passwordInputRef.current?.focus()}
+                  returnKeyType={'next'}
+                  label={t('login:userName')}
+                  errorText={errors?.username?.message}
+                  error={errors.username}
+                  onChangeText={(value) => onChange(value)}
+                  onBlur={onBlur}
+                  value={value}
                 />
-              }
+              )}
+              name="username"
+              rules={validation(t)['name']}
             />
+            <Controller
+              control={control}
+              render={({onChange, onBlur, value}) => (
+                <LoginInput
+                  errorText={errors?.password?.message}
+                  error={errors.password}
+                  onChangeText={(value) => onChange(value)}
+                  onBlur={onBlur}
+                  value={value}
+                  referance={passwordInputRef}
+                  label={t('login:password')}
+                  secureTextEntry={secureInput}
+                  /* inputStyle={{start: I18nManager.isRTL ? -calcFont(17) : 0}} */
+                  // errorText={'hello'}
+                  right={
+                    <TextInput.Icon
+                      onPress={toggleSecureInput}
+                      size={calcFont(20)}
+                      color={EYE_ICON_COLOR}
+                      name={secureInput ? 'eye-outline' : 'eye-off-outline'}
+                    />
+                  }
+                />
+              )}
+              name="password"
+              rules={validation(t)['password']}
+            />
+
             <CustomButton
-              buttonText={t('login')}
+              buttonText={t('login:login')}
               containerStyle={styles.button}
-              onPress={onLoginPressed}
+              onPress={handleSubmit(onLoginPressed)}
+              loading={isLoading}
             />
           </View>
         </View>
@@ -128,6 +168,7 @@ const styles = StyleSheet.create({
   keyboardAwareScrollView: {
     width: SCREEN_WIDTH - 20,
     height: SCREEN_HEIGHT,
+    flexGrow: 1,
   },
   topContainer: {
     width: '100%',

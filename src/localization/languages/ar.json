@@ -40,5 +40,10 @@
     "comments": "التعليقات",
     "addComment": "اكتب تعليقك",
     "send": "ارسال"
+  },
+  "validation": {
+    "required": "{{fieldName}} مطلوب",
+    "emailFormat": "صيغه بريد إلكتروني خطأه",
+    "minLength": "{{fieldName}}لابد أن يكون {{minLength}} chars"
   }
 }

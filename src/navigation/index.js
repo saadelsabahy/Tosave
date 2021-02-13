@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator, I18nManager} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Drawer from './Drawer';
 import RootStackScreen from './RootStack';

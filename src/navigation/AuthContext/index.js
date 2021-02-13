@@ -1,13 +1,16 @@
 import React, {useMemo, useReducer} from 'react';
 import {View, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import {SIGN_IN, SIGN_OUT, RESTORE_TOKEN} from './types';
+import {SIGN_IN, SIGN_OUT, RESTORE_TOKEN, USER_INFO} from './types';
 export const AuthenticationContext = React.createContext();
 
 const initialState = {
   isLoading: true,
   isSignout: false,
   userToken: null,
+  userName: '',
+  userType: '',
+  userId: '',
 };
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -15,16 +18,22 @@ const reducer = (state = initialState, {type, payload}) => {
     case RESTORE_TOKEN:
       return {
         ...state,
-        userToken: payload,
+        userToken: payload.userToken,
+        userName: payload.userName,
+        userType: payload.userType,
+        userId: payload.userId,
         isLoading: false,
       };
       break;
     case SIGN_IN:
       return {
         ...state,
-        userToken: payload,
+        userToken: payload.userToken,
         isLoading: false,
         isSignout: false,
+        userName: payload.userName,
+        userType: payload.userType,
+        userId: payload.userId,
       };
       break;
     case SIGN_OUT:
@@ -40,17 +49,20 @@ const AuthContext = ({children}) => {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data) => {
-        await AsyncStorage.setItem('userToken', data.userToken);
-        dispatch({type: SIGN_IN, payload: data.userToken});
+        await AsyncStorage.setItem(USER_INFO, JSON.stringify(data));
+        dispatch({type: SIGN_IN, payload: {...data}});
       },
       signOut: async () => {
-        await AsyncStorage.removeItem('userToken');
+        await AsyncStorage.removeItem(USER_INFO);
         dispatch({type: SIGN_OUT});
       },
       signUp: async (data) => {},
       restoreToken: async (data) => {
-        const token = await AsyncStorage.getItem('userToken');
-        dispatch({type: RESTORE_TOKEN, payload: token});
+        const userInfo = await JSON.parse(
+          await AsyncStorage.getItem(USER_INFO),
+        );
+        console.log(userInfo);
+        dispatch({type: RESTORE_TOKEN, payload: {...userInfo}});
         data;
       },
     }),
