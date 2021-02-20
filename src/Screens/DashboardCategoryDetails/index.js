@@ -83,8 +83,9 @@ const DashboardCategoryDetails = ({navigation, route}) => {
       : {
           filter: {
             [statusVariableKey]: {
-              _eq:
-                id == 2 ? segmentValuesEnglish[selectedIndex] : selectedIndex,
+              _eq: [2, 7].includes(id)
+                ? segmentValuesEnglish[selectedIndex]
+                : selectedIndex,
             },
           },
         };
