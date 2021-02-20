@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {FlatList, I18nManager, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {CustomText, Header, TextContainer} from '../../Components';
@@ -11,15 +11,23 @@ import {
 } from '../../constants/design/colorsAndSizes';
 import {WELCOME_DATA} from '../../constants/design/MockData';
 import {useTranslation} from 'react-i18next';
-
+import {AuthenticationContext} from '../../navigation/AuthContext';
 const WelcomeScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
-
+  const {
+    state: {userName},
+  } = useContext(AuthenticationContext);
   const onPhotoPressed = () => {
     navigation.openDrawer();
   };
 
-  const onWelcomeItemPressed = ({category, category_ar, description, icon}) => {
+  const onWelcomeItemPressed = ({
+    category,
+    category_ar,
+    description,
+    icon,
+    id,
+  }) => {
     navigation.navigate(
       category.toLowerCase().trim() == 'hse'
         ? 'WelcomeDashboard'
@@ -29,6 +37,7 @@ const WelcomeScreen = ({navigation}) => {
         category_ar,
         description,
         icon: category.toLowerCase().trim() == 'hse' ? null : icon,
+        id,
       },
     );
   };
@@ -47,7 +56,7 @@ const WelcomeScreen = ({navigation}) => {
 
         <View style={[styles.greetingContainer]}>
           <CustomText text={t('home:welcome')} textStyle={[styles.welcome]} />
-          <TextContainer text={t('drawer:userName')} />
+          <TextContainer text={userName} />
         </View>
 
         <View
@@ -61,7 +70,14 @@ const WelcomeScreen = ({navigation}) => {
             }}
             keyExtractor={(item, index) => `${item.id}`}
             renderItem={({
-              item: {icon, category, category_ar, description_ar, description},
+              item: {
+                icon,
+                category,
+                category_ar,
+                description_ar,
+                description,
+                id,
+              },
               index,
             }) => {
               const CATEGORY = I18nManager.isRTL ? category_ar : category;
@@ -80,6 +96,7 @@ const WelcomeScreen = ({navigation}) => {
                       category_ar,
                       description: DESCRIPTION,
                       icon,
+                      id,
                     })
                   }
                 />

@@ -45,5 +45,8 @@
     "required": "{{fieldName}} is required",
     "emailFormat": "invalid email format",
     "minLength": "{{fieldName}} must be at least {{minLength}} chars"
+  },
+  "general": {
+    "report": "report"
   }
 }

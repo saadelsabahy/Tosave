@@ -27,7 +27,7 @@ export const WELCOME_DATA = [
     description: 'Health and safety Reports',
     description_ar: 'تقارير الصحه والامان',
     icon: <MaintenanceIcon />,
-    id: 2,
+    id: 7,
   },
   {
     category: 'Help Desk',
@@ -35,7 +35,7 @@ export const WELCOME_DATA = [
     description: 'Health and safety Reports',
     description_ar: 'تقارير الصحه والامان',
     icon: <HelpDeskIcon />,
-    id: 3,
+    id: 8,
   },
 ];
 

@@ -9,6 +9,7 @@ import {
   DialogueModal,
   FilterModal,
   Header,
+  Loader,
   MonthlyReportCard,
   Segment,
 } from '../../Components';
@@ -22,16 +23,36 @@ import {
   WHITE_COLOR,
 } from '../../constants/design/colorsAndSizes';
 import {LIST_DATA} from '../../constants/design/MockData';
-import {CATEGORY_INCLUDES_PRANCHES} from '../../constants/ConstantsVariables';
+import {CATEGORY_INCLUDES_CALENDER} from '../../constants/ConstantsVariables';
 import {DurationIcon, FilterIcon} from '../../Svgs';
 import {useTranslation} from 'react-i18next';
 import {useQuery, useSubscription} from '@apollo/client';
-import {GET_MONTHLY} from '../../constants/api/Graphql/Queries';
+import {
+  GET_MONTHLY,
+  GET_RISK,
+  GET_EMERGENCY,
+  GET_INCIDENTS,
+  GET_MAINTENNCE,
+  GET_TRAINING,
+} from '../../constants/api/Graphql/Queries';
+import reactotron from 'reactotron-react-native';
+import dayjs from 'dayjs';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import {EmptyList} from '../../Components/ListEmptyComponent';
+dayjs.extend(LocalizedFormat);
+const segmentValuesEnglish = ['new', 'underReview', 'done'];
 const DashboardCategoryDetails = ({navigation, route}) => {
   const {t} = useTranslation();
-  const {category, category_ar, icon} = route.params;
+  const segmentValues = [
+    t('segment:new'),
+    t('segment:underReview'),
+    t('segment:done'),
+  ];
+
+  const {category, category_ar, icon, id} = route?.params;
   const CATEGORY = I18nManager.isRTL ? category_ar : category;
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState(1);
   const filterRef = useRef();
   const onNotificationsPressed = () => {
     navigation.navigate('Notifications');
@@ -39,11 +60,39 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   const onPhotoPressed = () => {
     navigation.openDrawer();
   };
-  const {data} = useSubscription(GET_MONTHLY, {
-    variables: {filter: {}},
+  const SUBSCRIPTION =
+    id == 1
+      ? GET_MONTHLY
+      : id == 2
+      ? GET_RISK
+      : id == 3
+      ? GET_TRAINING
+      : id == 4
+      ? GET_INCIDENTS
+      : GET_MAINTENNCE;
+  reactotron.log({SUBSCRIPTION, id});
+  const statusVariableKey = id == 2 ? 'state' : 'status';
+  const variables =
+    id == 1
+      ? {
+          filter: {
+            month: {_eq: selectedMonth},
+            status: {_eq: selectedIndex},
+          },
+        }
+      : {
+          filter: {
+            [statusVariableKey]: {
+              _eq:
+                id == 2 ? segmentValuesEnglish[selectedIndex] : selectedIndex,
+            },
+          },
+        };
+  const {data, loading, error} = useSubscription(SUBSCRIPTION, {
+    variables,
   });
 
-  console.log({data});
+  reactotron.log({data});
   const onSegmentChange = (event) => {
     setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
   };
@@ -60,6 +109,9 @@ const DashboardCategoryDetails = ({navigation, route}) => {
   };
   const onFilterIconPressed = () => {
     filterRef.current.open();
+  };
+  const onCalenderStripeItemPressed = (month) => {
+    setSelectedMonth(month);
   };
   return (
     <View style={[styles.container]}>
@@ -90,46 +142,57 @@ const DashboardCategoryDetails = ({navigation, route}) => {
         </View>
 
         <Segment
-          values={[
-            t('segment:new'),
-            t('segment:underReview'),
-            t('segment:done'),
-          ]}
+          values={segmentValues}
           selectedIndex={selectedIndex}
           onChange={onSegmentChange}
         />
 
         <View style={[styles.calendarStripeContainer]}>
-          {CATEGORY_INCLUDES_PRANCHES.includes(category.toLowerCase()) ? (
-            <CustomDropdown />
+          {CATEGORY_INCLUDES_CALENDER.includes(id) ? (
+            <CustomCalendarStripe
+              onCalenderStripeItemPressed={onCalenderStripeItemPressed}
+              selectedMonth={selectedMonth}
+            />
           ) : (
-            <CustomCalendarStripe />
+            <CustomDropdown />
           )}
         </View>
 
         <View style={styles.listContainer}>
-          <FlatList
-            contentContainerStyle={{paddingBottom: calcHeight(100)}}
-            // extraData={selectedIndex}
-            data={LIST_DATA}
-            keyExtractor={(item, index) => `${item.id}`}
-            renderItem={({
-              item: {category, type, id, date, badgeNumber},
-              index,
-            }) => {
-              return (
-                <MonthlyReportCard
-                  description={type}
-                  title={category}
-                  date={date}
-                  done={selectedIndex == 2}
-                  badgeNumber={selectedIndex == 1 && badgeNumber}
-                  onPress={() => onItemPressed({date})}
-                  delay={index * 500}
-                />
-              );
-            }}
-          />
+          {loading && <Loader />}
+          {data && (
+            <FlatList
+              contentContainerStyle={{flexGrow: 1}}
+              // extraData={selectedIndex}
+              data={data?.reports}
+              keyExtractor={(item, index) => `${item.id}`}
+              renderItem={({
+                item: {
+                  id,
+                  branch_id,
+                  created_at,
+                  updated_at,
+                  branch: {name, name_en},
+                  badgeNumber,
+                },
+                index,
+              }) => {
+                const date = dayjs(created_at).format('LL').toString();
+                return (
+                  <MonthlyReportCard
+                    description={I18nManager.isRTL ? name : name_en}
+                    title={`${t('general:report')} ${date}`}
+                    date={date}
+                    done={selectedIndex == 2}
+                    badgeNumber={selectedIndex == 1 && badgeNumber}
+                    onPress={() => onItemPressed({date})}
+                    delay={index * 500}
+                  />
+                );
+              }}
+              ListEmptyComponent={<EmptyList />}
+            />
+          )}
         </View>
       </Block>
       <CreateMonthlyReportIcon onPress={onCreatePressed} />

@@ -45,5 +45,8 @@
     "required": "{{fieldName}} مطلوب",
     "emailFormat": "صيغه بريد إلكتروني خطأه",
     "minLength": "{{fieldName}}لابد أن يكون {{minLength}} chars"
+  },
+  "general": {
+    "report": "تقرير"
   }
 }

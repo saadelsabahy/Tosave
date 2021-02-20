@@ -15,8 +15,15 @@ const MONTHES = [
 
 export const IMAGE_LENGTH = 9;
 export const IMAGE_GRID_COLUMNS = 3;
-export const CATEGORY_INCLUDES_PRANCHES = [
-  'training',
-  'help desk',
-  'first aid',
-];
+export const CATEGORY_INCLUDES_CALENDER = [1, 2];
+
+export const REPORT_NAME = {
+  MONTHLY: 0,
+  RISK: 1,
+  TRAINING: 2,
+  INCIDENT: 3,
+  EVACUATION: 4,
+  FIRST_AID: 5,
+  MAINTENANCE: 6,
+  HELP_DESK: 7,
+};

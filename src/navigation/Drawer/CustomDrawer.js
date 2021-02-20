@@ -33,7 +33,10 @@ import {AuthenticationContext} from '../AuthContext';
 import {LanguageSheetContext} from '../../context/LanguageSheetProvider';
 
 function CustomDrawer({navigation, ...props}) {
-  const {authContext} = useContext(AuthenticationContext);
+  const {
+    authContext,
+    state: {userName},
+  } = useContext(AuthenticationContext);
   const {languageModalRef} = useContext(LanguageSheetContext);
   const {t, i18n} = useTranslation();
 
@@ -61,10 +64,7 @@ function CustomDrawer({navigation, ...props}) {
         />
         <View style={[styles.imageContainer]}>
           <PhotoRecangle containerStyle={styles.photo} />
-          <CustomText
-            text={t('drawer:userName')}
-            textStyle={[styles.userName]}
-          />
+          <CustomText text={userName} textStyle={[styles.userName]} />
         </View>
       </View>
 

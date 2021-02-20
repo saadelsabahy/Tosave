@@ -18,9 +18,9 @@ const WelcomeDashboard = ({navigation, route}) => {
   const goBack = () => {
     navigation.goBack();
   };
-  const onItemPressed = ({category, category_ar, icon}) => {
-    console.log('itrem' + category);
-    navigation.navigate('DashboardCategory', {category, category_ar, icon});
+  const onItemPressed = ({category, category_ar, icon, id}) => {
+    console.log({category});
+    navigation.navigate('DashboardCategory', {category, category_ar, icon, id});
   };
   return (
     <View
@@ -50,7 +50,7 @@ const WelcomeDashboard = ({navigation, route}) => {
                   ItemIcon={icon}
                   itemName={CATEGORY}
                   onItemPressed={() =>
-                    onItemPressed({category, category_ar, icon})
+                    onItemPressed({category, category_ar, icon, id})
                   }
                   delay={index * 500}
                 />

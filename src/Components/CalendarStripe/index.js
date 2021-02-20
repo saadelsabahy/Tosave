@@ -1,5 +1,12 @@
 import React from 'react';
-import {I18nManager, Platform, FlatList, StyleSheet, View} from 'react-native';
+import {
+  I18nManager,
+  Platform,
+  FlatList,
+  StyleSheet,
+  View,
+  Pressable,
+} from 'react-native';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import {CustomText} from '../customText';
@@ -14,7 +21,11 @@ import {MonthlyCalendar} from '../../Svgs';
 // import {FlatList} from 'react-native-gesture-handler';
 dayjs.extend(localeData);
 
-const CustomCalendarStripe = ({calenderMonthStyle}) => {
+const CustomCalendarStripe = ({
+  calenderMonthStyle,
+  onCalenderStripeItemPressed,
+  selectedMonth,
+}) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -30,16 +41,17 @@ const CustomCalendarStripe = ({calenderMonthStyle}) => {
         showsHorizontalScrollIndicator={false}
         renderItem={({item, index}) => {
           return (
-            <View
+            <Pressable
               style={[
                 styles.monthContainer,
-                {borderBottomWidth: index == 0 ? 3 : 0},
-              ]}>
+                {borderBottomWidth: index == selectedMonth - 1 ? 3 : 0},
+              ]}
+              onPress={() => onCalenderStripeItemPressed(index + 1)}>
               <CustomText
                 text={` ${item.toString().toUpperCase()} ${dayjs().year()}`}
                 textStyle={[styles.calenderMonth, calenderMonthStyle]}
               />
-            </View>
+            </Pressable>
           );
         }}
         initialNumToRender={5}
